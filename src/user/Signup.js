@@ -9,12 +9,15 @@ class Signup extends Component {
             name: "",
             email: "",
             password: "",
-            error: ""
+            error: "",
+            open: false
         }
     }
 
     // This is a higher order function: a function that returns another function. We need this to handle events.
     handleChange = name => event => {
+        // When there's a change happening in user signup input it will clear the old errors.
+        this.setState({error: ""});
         this.setState({ [name]: event.target.value });
     };
 
@@ -24,8 +27,24 @@ class Signup extends Component {
         const { name, email, password } = this.state;
         const user = { name, email, password };
 
+        // This handles errors when the user is signing up. (Eg. Email is already in use.)
+        this.signup(user).then(data => {
+            if (data.error) this.setState({error: data.error});
+            else
+                this.setState ({
+                    error: "",
+                    name: "",
+                    email: "",
+                    password: "",
+                    open: true
+                });
+        });
+
+    };
+
+    signup = user => {
         // Another way to send an API request to the backend aside from axios.
-        fetch("http://localhost:8080/signup", {
+        return fetch("http://localhost:8080/signup", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -37,15 +56,23 @@ class Signup extends Component {
             .then(response => {
                 return response.json()
             })
-            // Else we return an error if there was one.
+            // Else we return an error if the user wasn't created.
             .catch(err => console.log(err))
-    };
+    }
 
     render () {
-        const {name, email, password} = this.state;
+        const {name, email, password, error, open} = this.state;
         return (
             <div className="container">
                 <h2 className="mt-5 mb-5">Signup</h2>
+
+                {/* This div will display error messages if there are issues when the user is signing up. */}
+                <div className="alert alert-primary" style={{ display: error ? "" :" none" }}>{error}</div>
+
+                <div className="alert alert-info" style={{ display: open ? "" :" none" }}>
+                    New account is successfully created. Please sign in.
+                </div>
+
                 <form>
                     <div className="form-group">
                         <label className="text-muted">Name</label>
