@@ -13,24 +13,30 @@ class Signup extends Component {
         }
     }
 
+    // This is a higher order function: a function that returns another function. We need this to handle events.
+    handleChange = (name) => (event) => {
+        this.setState({ [name]: event.target.value });
+    };
+
     render () {
+        const {name, email, password} = this.state;
         return (
             <div className="container">
                 <h2 className="mt-5 mb-5">Signup</h2>
                 <form>
-                    <div className="signUpForm">
-                        <lable className="textMuted">Name</lable>
-                        <input className="formControl" type="text"/>
+                    <div className="form-group">
+                        <label className="text-muted">Name</label>
+                        <input onChange={this.handleChange("name")} className="form-control" type="text" value={name}/>
                     </div>
-                    <div className="signUpForm">
-                        <lable className="textMuted">Email</lable>
-                        <input className="formControl" type="email"/>
+                    <div className="form-group">
+                        <label className="text-muted">Email</label>
+                        <input onChange={this.handleChange("email")} className="form-control" type="email" value={email}/>
                     </div>
-                    <div className="signUpForm">
-                        <lable className="textMuted">Password</lable>
-                        <input className="formControl" type="password"/>
+                    <div className="form-group">
+                        <label className="text-muted">Password</label>
+                        <input onChange={this.handleChange("password")} className="form-control" type="password" value={password}/>
                     </div>
-                    <button className="signUpBtn btn-raised btn-primary">Submit</button>
+                    <button className="btn btn-raised btn-primary">Submit</button>
                 </form>
             </div>
         );
