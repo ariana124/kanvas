@@ -14,8 +14,31 @@ class Signup extends Component {
     }
 
     // This is a higher order function: a function that returns another function. We need this to handle events.
-    handleChange = (name) => (event) => {
+    handleChange = name => event => {
         this.setState({ [name]: event.target.value });
+    };
+
+    clickSubmit = event => {
+        // By default when the user clicks the submit button the page refreshes so that's why we're disabling it.
+        event.preventDefault()
+        const { name, email, password } = this.state;
+        const user = { name, email, password };
+
+        // Another way to send an API request to the backend aside from axios.
+        fetch("http://localhost:8080/signup", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+            // If post request is successful and a user is created in the backend(database) then we return the JSON response.
+            .then(response => {
+                return response.json()
+            })
+            // Else we return an error if there was one.
+            .catch(err => console.log(err))
     };
 
     render () {
@@ -36,7 +59,7 @@ class Signup extends Component {
                         <label className="text-muted">Password</label>
                         <input onChange={this.handleChange("password")} className="form-control" type="password" value={password}/>
                     </div>
-                    <button className="btn btn-raised btn-primary">Submit</button>
+                    <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">Submit</button>
                 </form>
             </div>
         );
