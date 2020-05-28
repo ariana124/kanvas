@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class Signin extends Component {
-    // Local state will hold user input such as username, email, password, etc.
+    // Local state will hold user input such as email, password, etc.
     constructor () {
         super()
         this.state = {
@@ -14,7 +14,7 @@ class Signin extends Component {
 
     // This is a higher order function: a function that returns another function. We need this to handle events.
     handleChange = name => event => {
-        // When there's a change happening in user signup input it will clear the old errors.
+        // When there's a change happening in user signin input it will clear the old errors.
         this.setState({ error: "" });
         this.setState({ [name]: event.target.value });
     };
@@ -25,7 +25,7 @@ class Signin extends Component {
         const { email, password } = this.state;
         const user = { email, password };
 
-        // This handles errors when the user is signing up. (Eg. Email is already in use.)
+        // This handles errors when the user is signing in.
         this.signin(user).then(data => {
             if (data.error) {
                 this.setState({error: data.error})
@@ -74,7 +74,7 @@ class Signin extends Component {
             <div className="container">
                 <h2 className="mt-5 mb-5">Sign In</h2>
 
-                {/* This div will display error messages if there are issues when the user is signing up. */}
+                {/* This div will display error messages if there are issues when the user is signing in. */}
                 <div className="alert alert-danger" style={{ display: error ? "" :" none" }}>{error}</div>
 
                 {this.signinForm(email, password)}
@@ -82,6 +82,5 @@ class Signin extends Component {
         );
     }
 }
-   
 
 export default Signin;
