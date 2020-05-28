@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Signin extends Component {
     // Local state will hold user input such as email, password, etc.
@@ -8,7 +9,8 @@ class Signin extends Component {
             email: "",
             password: "",
             error: "",
-            redirectToReference: false
+            redirectToReferer: false,
+            loading: false
         };
     }
 
@@ -19,18 +21,31 @@ class Signin extends Component {
         this.setState({ [name]: event.target.value });
     };
 
+    // jwt = JSON word token, next = the callback function
+    authenticate (jwt, next) {
+        // Checks if the window object is available when the component is done rendering and mounting. (?)
+        if (typeof window !== "undefined") {
+            localStorage.setItem("jwt", JSON.stringify(jwt));
+            next();
+        }
+    };
+
     clickSubmit = event => {
         // By default when the user clicks the submit button the page refreshes so that's why we're disabling it.
         event.preventDefault()
+        this.setState({loading: true})
         const { email, password } = this.state;
         const user = { email, password };
 
         // This handles errors when the user is signing in.
         this.signin(user).then(data => {
             if (data.error) {
-                this.setState({error: data.error})
+                this.setState({error: data.error, loading: false})
             } else {
-                // Authenticate the user and redirect user to another page.
+                // Authenticates the user and redirect user to another page.
+                this.authenticate(data, () => {
+                    this.setState({redirectToReferer: true})
+                })
             }
         });
 
@@ -69,13 +84,24 @@ class Signin extends Component {
     )
 
     render () {
-        const {email, password, error} = this.state;
+        const {email, password, error, redirectToReferer, loading} = this.state;
+        
+        // If user was able to sign in successfully then it redirects them to the home page.
+        if (redirectToReferer) {
+            return <Redirect to="/"/>
+        }
+
         return (
             <div className="container">
                 <h2 className="mt-5 mb-5">Sign In</h2>
 
                 {/* This div will display error messages if there are issues when the user is signing in. */}
                 <div className="alert alert-danger" style={{ display: error ? "" :" none" }}>{error}</div>
+
+                {/* If loading is true then it displays loading..., else it returns an empty string(nothing). */}
+                {loading ? <div className="jumbotron text-center">
+                    <h3>Loading...</h3>
+                </div> :""}
 
                 {this.signinForm(email, password)}
             </div>
