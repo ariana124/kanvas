@@ -33,6 +33,7 @@ class Signin extends Component {
     clickSubmit = event => {
         // By default when the user clicks the submit button the page refreshes so that's why we're disabling it.
         event.preventDefault()
+        // When user clicks submit loading becomes true and displays it on the screen.
         this.setState({loading: true})
         const { email, password } = this.state;
         const user = { email, password };
@@ -85,7 +86,7 @@ class Signin extends Component {
 
     render () {
         const {email, password, error, redirectToReferer, loading} = this.state;
-        
+
         // If user was able to sign in successfully then it redirects them to the home page.
         if (redirectToReferer) {
             return <Redirect to="/"/>
@@ -101,7 +102,7 @@ class Signin extends Component {
                 {/* If loading is true then it displays loading..., else it returns an empty string(nothing). */}
                 {loading ? <div className="jumbotron text-center">
                     <h3>Loading...</h3>
-                </div> :""}
+                </div> : ""}
 
                 {this.signinForm(email, password)}
             </div>
