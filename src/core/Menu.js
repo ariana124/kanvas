@@ -36,7 +36,7 @@ const Menu = ({history}) => (
                     </li>
                     <li className="nav-item">
                         {/* This will display the user's username. */}
-                        <a href className="nav-link">{isAuthenticated().user.name}</a>
+                        <a href className="nav-link">{`${isAuthenticated().user.name}'s profile`}</a>
                     </li>
                 </>
             )}
