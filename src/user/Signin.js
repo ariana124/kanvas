@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { signin, authenticate } from '../auth';
 
 class Signin extends Component {
     // Local state will hold user input such as email, password, etc.
@@ -21,15 +22,6 @@ class Signin extends Component {
         this.setState({ [name]: event.target.value });
     };
 
-    // jwt = JSON word token, next = the callback function
-    authenticate (jwt, next) {
-        // Checks if the window object is available when the component is done rendering and mounting. (?)
-        if (typeof window !== "undefined") {
-            localStorage.setItem("jwt", JSON.stringify(jwt));
-            next();
-        }
-    };
-
     clickSubmit = event => {
         // By default when the user clicks the submit button the page refreshes so that's why we're disabling it.
         event.preventDefault()
@@ -39,36 +31,18 @@ class Signin extends Component {
         const user = { email, password };
 
         // This handles errors when the user is signing in.
-        this.signin(user).then(data => {
+        signin(user).then(data => {
             if (data.error) {
                 this.setState({error: data.error, loading: false})
             } else {
                 // Authenticates the user and redirect user to another page.
-                this.authenticate(data, () => {
+                authenticate(data, () => {
                     this.setState({redirectToReferer: true})
                 })
             }
         });
 
     };
-
-    signin = user => {
-        // Another way to send an API request to the backend aside from axios.
-        return fetch("http://localhost:8080/signin", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(user)
-        })
-            // If post request is successful and a user is created in the backend(database) then we return the JSON response.
-            .then(response => {
-                return response.json()
-            })
-            // Else we return an error if the user wasn't created.
-            .catch(err => console.log(err))
-    }
 
     signinForm = (email, password) => (
         <form>
