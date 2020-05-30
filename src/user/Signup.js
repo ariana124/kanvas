@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { signup } from '../auth';
 
 
 class Signup extends Component {
@@ -28,7 +29,7 @@ class Signup extends Component {
         const user = { name, email, password };
 
         // This handles errors when the user is signing up. (Eg. Email is already in use.)
-        this.signup(user).then(data => {
+        signup(user).then(data => {
             if (data.error) this.setState({error: data.error});
             else
                 this.setState ({
@@ -41,24 +42,6 @@ class Signup extends Component {
         });
 
     };
-
-    signup = user => {
-        // Another way to send an API request to the backend aside from axios.
-        return fetch("http://localhost:8080/signup", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(user)
-        })
-            // If post request is successful and a user is created in the backend(database) then we return the JSON response.
-            .then(response => {
-                return response.json()
-            })
-            // Else we return an error if the user wasn't created.
-            .catch(err => console.log(err))
-    }
 
     signupForm = (name, email, password) => (
         <form>
