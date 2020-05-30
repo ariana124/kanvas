@@ -23,6 +23,21 @@ export const signout = (next) => {
 }
 
 
+// Will check if the user is authenticated, this means that there's a JSON web token in the localStorage.
+export const isAuthenticated = () => {
+    // This is just good practice, check that there's a window.
+    if (typeof window == "undefined") return false;
+
+    // We use getItem to get JSON web token because it contains the user information: username, email, etc.
+    if (localStorage.getItem("jwt")) {
+        return JSON.parse(localStorage.getItem("jwt"));
+    } else {
+        // This means that the user is not authenticated.
+        return false;
+    }
+}
+
+
 // This is a functional component, not a class component since it doesn't need to have a state.
 const Menu = ({history}) => (
     <div>
@@ -31,16 +46,24 @@ const Menu = ({history}) => (
             <li className="nav-item">
                 <Link className="nav-link" style={isActive(history, "/")} to="/">Home</Link>
             </li>
-            <li className="nav-item">
-                <Link className="nav-link" style={isActive(history, "/signin")} to="/signin">Sign In</Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" style={isActive(history, "/signup")} to="/signup">Sign Up</Link>
-            </li>
-            <li className="nav-item">
-                {/* We use the a tag because we're not trying to navigate the user to another component. */}
-                <a href className="nav-link" style={isActive(history, "/signup"), {cursor: "pointer"}} onClick={() => signout(() => history.push('/'))}>Sign Out</a>
-            </li>
+            {/* If the user is not authenticated then we only display the sign in and sign up components. */}
+            {!isAuthenticated() && (
+                <> {/* This is a react fragment. */}
+                    <li className="nav-item">
+                        <Link className="nav-link" style={isActive(history, "/signin")} to="/signin">Sign In</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" style={isActive(history, "/signup")} to="/signup">Sign Up</Link>
+                    </li>
+                </>
+            )}
+            {/* If the user is authenticated then we display the sign out component. */}
+            {isAuthenticated() && (
+                <li className="nav-item">
+                    {/* We use the a tag because we're not trying to navigate the user to another component. */}
+                    <a href className="nav-link" style={(isActive(history, "/signup"), {cursor: "pointer"})} onClick={() => signout(() => history.push('/'))}>Sign Out</a>
+                </li>
+            )}
         </ul>
     </div>
 );
