@@ -1,42 +1,12 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { signout, isAuthenticated } from '../auth';
 
 // If the history and pathname match then it will change the color of the link to inidicate that it's active. 
 const isActive = (history, path) => {
     if (history.location.pathname === path) return { color: "#000" };
         else return { color: "#fff" };
 }
-
-
-// We use next(a method) and another callback to redirect the user to another page such as login or home when they sign out.
-export const signout = (next) => {
-    if (typeof window !== "undefined") localStorage.removeItem("jwt");
-    next();
-    // Will eventually change to environment variable.
-    return fetch("http://local:8080/signout", {
-        method: "GET"
-    })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log(err));
-}
-
-
-// Will check if the user is authenticated, this means that there's a JSON web token in the localStorage.
-export const isAuthenticated = () => {
-    // This is just good practice, check that there's a window.
-    if (typeof window == "undefined") return false;
-
-    // We use getItem to get JSON web token because it contains the user information: username, email, etc.
-    if (localStorage.getItem("jwt")) {
-        return JSON.parse(localStorage.getItem("jwt"));
-    } else {
-        // This means that the user is not authenticated.
-        return false;
-    }
-}
-
 
 // This is a functional component, not a class component since it doesn't need to have a state.
 const Menu = ({history}) => (
