@@ -59,10 +59,16 @@ const Menu = ({history}) => (
             )}
             {/* If the user is authenticated then we display the sign out component. */}
             {isAuthenticated() && (
-                <li className="nav-item">
-                    {/* We use the a tag because we're not trying to navigate the user to another component. */}
-                    <a href className="nav-link" style={(isActive(history, "/signup"), {cursor: "pointer"})} onClick={() => signout(() => history.push('/'))}>Sign Out</a>
-                </li>
+                <>
+                    <li className="nav-item">
+                        {/* We use the a tag because we're not trying to navigate the user to another component. */}
+                        <a href className="nav-link" style={(isActive(history, "/signup"), {cursor: "pointer"})} onClick={() => signout(() => history.push('/'))}>Sign Out</a>
+                    </li>
+                    <li className="nav-item">
+                        {/* This will display the user's username. */}
+                        <a href className="nav-link">{isAuthenticated().user.name}</a>
+                    </li>
+                </>
             )}
         </ul>
     </div>
