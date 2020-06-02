@@ -1,6 +1,6 @@
 export const signup = user => {
     // Another way to send an API request to the backend aside from axios.
-    return fetch("http://localhost:8080/signup", {
+    return fetch("http://localhost:8080/api/signup", {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -10,15 +10,15 @@ export const signup = user => {
     })
         // If post request is successful and a user is created in the backend(database) then we return the JSON response.
         .then(response => {
-            return response.json()
+            return response.json();
         })
         // Else we return an error if the user wasn't created.
-        .catch(err => console.log(err))
-}
+        .catch(err => console.log(err));
+};
 
 export const signin = user => {
     // Another way to send an API request to the backend aside from axios.
-    return fetch("http://localhost:8080/signin", {
+    return fetch("http://localhost:8080/api/signin", {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -28,25 +28,25 @@ export const signin = user => {
     })
         // If post request is successful and a user is created in the backend(database) then we return the JSON response.
         .then(response => {
-            return response.json()
+            return response.json();
         })
         // Else we return an error if the user wasn't created.
-        .catch(err => console.log(err))
-}
+        .catch(err => console.log(err));
+};
 
 // We use next(a method) and another callback to redirect the user to another page such as login or home when they sign out.
 export const signout = (next) => {
     if (typeof window !== "undefined") localStorage.removeItem("jwt");
     next();
     // Will eventually change to environment variable.
-    return fetch("http://local:8080/signout", {
+    return fetch("http://local:8080/api/signout", {
         method: "GET"
     })
         .then(response => {
             return response.json();
         })
         .catch(err => console.log(err));
-}
+};
 
 // jwt = JSON web token, next = the callback function
 export const authenticate = (jwt, next) => {
@@ -69,4 +69,4 @@ export const isAuthenticated = () => {
         // This means that the user is not authenticated.
         return false;
     }
-}
+};
