@@ -27,11 +27,12 @@ class Signup extends Component {
         event.preventDefault()
         const { name, email, password } = this.state;
         const user = { name, email, password };
-
+  
         // This handles errors when the user is signing up. (Eg. Email is already in use.)
         signup(user).then(data => {
-            if (data.error) this.setState({error: data.error});
-            else
+            if (data.error) {
+                this.setState({error: data.error});
+            } else {
                 this.setState ({
                     error: "",
                     name: "",
@@ -39,6 +40,7 @@ class Signup extends Component {
                     password: "",
                     open: true
                 });
+            }
         });
 
     };
