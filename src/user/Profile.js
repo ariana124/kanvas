@@ -13,7 +13,7 @@ class Profile extends Component {
 
     // A lifecycle method (?), when this component mounts we get the userId to make a GET request later in the backend.
     componentDidMount() {
-        console.log("userid from route params: {}", this.props.match.params.userId);
+        console.log("userid from route params:", this.props.match.params.userId);
     }
 
     render() {
