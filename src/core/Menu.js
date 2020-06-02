@@ -36,11 +36,9 @@ const Menu = ({history}) => (
                     </li>
                     <li className="nav-item">
                         {/* This will display the user's username and go to their profile page when the username is clicked. */}
-                        <a href className="nav-link">
-                            <Link to={`/user/${isAuthenticated().user._id}`} style={{color: "#fff"}}>
-                                {`${isAuthenticated().user.name}'s profile`}
-                            </Link>
-                        </a>
+                        <Link to={`/user/${isAuthenticated().user._id}`} className="nav-link" style={{color: "#fff"}}>
+                            {`${isAuthenticated().user.name}'s profile`}
+                        </Link>
                     </li>
                 </>
             )}
