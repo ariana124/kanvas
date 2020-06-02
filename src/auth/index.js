@@ -1,6 +1,9 @@
+// Will eventually remove this when we create a new repository to merge the frontend and backend.
+require('dotenv').config();
+
 export const signup = user => {
     // Another way to send an API request to the backend aside from axios.
-    return fetch("http://localhost:8080/api/signup", {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/signup`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -18,7 +21,7 @@ export const signup = user => {
 
 export const signin = user => {
     // Another way to send an API request to the backend aside from axios.
-    return fetch("http://localhost:8080/api/signin", {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/signin`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -39,7 +42,7 @@ export const signout = (next) => {
     if (typeof window !== "undefined") localStorage.removeItem("jwt");
     next();
     // Will eventually change to environment variable.
-    return fetch("http://local:8080/api/signout", {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/signout`, {
         method: "GET"
     })
         .then(response => {
