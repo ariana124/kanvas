@@ -17,7 +17,7 @@ const Menu = ({history}) => (
                 <Link className="nav-link" style={isActive(history, "/")} to="/">Home</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" style={isActive(history, "/users")} to="/">Users</Link>
+                <Link className="nav-link" style={isActive(history, "/users")} to="/users">Users</Link>
             </li>
             {/* If the user is not authenticated then we only display the sign in and sign up components. */}
             {!isAuthenticated() && (
