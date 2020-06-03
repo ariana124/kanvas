@@ -13,3 +13,14 @@ export const read = (userId, token) => {
         })
         .catch(err => console.log(err));
 };
+
+export const list = () => {
+    return fetch (`${process.env.REACT_APP_API_URL}/api/users`, {
+        method: "GET"
+    })
+        // This returns the json response with the user's information.
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
