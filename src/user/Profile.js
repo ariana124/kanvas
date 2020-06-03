@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { isAuthenticated } from '../auth';
 import { Redirect } from 'react-router-dom';
-
+import { read } from './apiUser';
 
 class Profile extends Component {
     constructor() {
@@ -9,33 +9,25 @@ class Profile extends Component {
         this.state= {
             user: "",
             redirectToSignin: false
-        }
+        };
     }
+
+    init = (userId) => {
+        const token = isAuthenticated().token;
+        read(userId, token).then(data => {
+        // This redirects the user to the signin component if they're not authenticated. 
+            if (data.error) {
+                this.setState({ redirectToSignin: true })
+            } else {
+                this.setState({ user: data });
+            }
+        })
+    };
 
     // A lifecycle method (?), when this component mounts we get the userId to make a GET request to the backend.
     componentDidMount() {
         const userId = this.props.match.params.userId;
-        fetch (`${process.env.REACT_APP_API_URL}/api/user/${userId}`, {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-                "Content-type": "application/json",
-                Authorization: `Bearer ${isAuthenticated().token}`
-            }
-        })
-            // This returns the json response with the user's information.
-            .then(response => {
-                return response.json();
-            })
-
-            // This redirects the user to the signin component if they're not authenticated.
-            .then(data => {
-                if (data.error) {
-                    this.setState({ redirectToSignin: true })
-                } else {
-                    this.setState({ user: data });
-                }
-            })
+        this.init(userId);
     };
 
     render() {
