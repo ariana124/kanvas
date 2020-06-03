@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { isAuthenticated } from '../auth';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { read } from './apiUser';
 
 class Profile extends Component {
@@ -31,15 +31,33 @@ class Profile extends Component {
     };
 
     render() {
-        const redirectToSignin = this.state.redirectToSignin;
+        const {redirectToSignin, user} = this.state;
         if (redirectToSignin) return <Redirect to="/signin "/>;
 
         return (
             <div className="container">
-                <h2 className="mt-5 mb-5">Profile</h2>
-                    <p> Hello {isAuthenticated().user.name}</p>
-                    <p> Email: {isAuthenticated().user.email}</p>
-                    <p>{`Joined ${new Date(this.state.user.created).toDateString()}`}</p>
+                <div className="row">
+                    <div className="col-md-6">
+                        <h2 className="mt-5 mb-5">Profile</h2>
+                            <p> Hello {isAuthenticated().user.name}</p>
+                            <p> Email: {isAuthenticated().user.email}</p>
+                            <p>{`Joined ${new Date(user.created).toDateString()}`}</p>
+                    </div>
+                    <div className="col-md-6">
+                        {/* This checks if the user is authenticated and it matches the current user it will display the edit and delete buttons. */}
+                        {isAuthenticated().user && isAuthenticated().user._id === user._id && (
+                            <div className="d-inline-block mt-5">
+                                {/* Might need to add the /api route later. */}
+                                <Link to={`/user/edit/${user._id}`} className="btn btn-raised btn-success mr-5">
+                                    Edit Profile
+                                </Link>
+                                <button className="btn btn-raised btn-danger">
+                                    Delete Profile
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>
         )
     }
