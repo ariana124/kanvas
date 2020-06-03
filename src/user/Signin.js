@@ -75,7 +75,7 @@ class Signin extends Component {
 
                 {/* If loading is true then it displays loading..., else it returns an empty string(nothing). */}
                 {loading ? <div className="jumbotron text-center">
-                    <h3>Loading...</h3>
+                    <h6>Loading...</h6>
                 </div> : ""}
 
                 {this.signinForm(email, password)}
