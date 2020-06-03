@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { list } from './apiUser';
+import DefaultProfile from '../images/profilepic.jpg';
 
 
 class Users extends Component {
@@ -26,7 +27,11 @@ class Users extends Component {
             /controllers/users.js allUsers method once KP merges the backend.*/}
             {users.map((user, i) => (
                 <div className="card col-md-4" key={i}>
-                    <img className="card-img-top" src="" alt="User card"/>
+                    <img 
+                        className="card-img-top" 
+                        src={DefaultProfile} 
+                        alt={user.name}
+                        style={{ width: '100%', height: '25vw', objectFit: 'cover' }}/>
                     <div className="card-body">
                         <h5 className="card-title">{user.name}</h5>
                         <p className="card-text">The user's bio or short self intro would go here.</p>
