@@ -69,7 +69,7 @@ class Profile extends Component {
                                 <Link to={`/user/edit/${user._id}`} className="btn btn-raised btn-success mr-5">
                                     Edit Profile
                                 </Link>
-                                <DeleteUser />
+                                <DeleteUser userId={user._id} />
                             </div>
                         )}
                     </div>
