@@ -33,6 +33,13 @@ class Profile extends Component {
         this.init(userId);
     };
 
+    /* This redirects the user to their profile page when viewing another user's profile page and they decide to
+       click the link to their own profile. */
+    componentWillReceiveProps(props) {
+        const userId = props.match.params.userId;
+        this.init(userId);
+    };
+
     render() {
         const {redirectToSignin, user} = this.state;
         if (redirectToSignin) return <Redirect to="/signin "/>;
