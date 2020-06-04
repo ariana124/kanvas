@@ -1,0 +1,39 @@
+{
+  "name": "kanvas-backend",
+  "version": "1.0.0",
+  "description": "A Node JS API",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevapostol/Kanvas-backend.git"
+  },
+  "keywords": [
+    "node",
+    "api"
+  ],
+  "author": "Kevin Apostol",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevapostol/Kanvas-backend/issues"
+  },
+  "homepage": "https://github.com/kevapostol/Kanvas-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.3",
+    "express-validator": "^5.3.1",
+    "formidable": "^1.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.9.16",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4",
+    "uuid": "^8.1.0"
+  }
+}
