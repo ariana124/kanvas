@@ -3,7 +3,7 @@ require('dotenv').config();
 
 export const signup = user => {
     // Another way to send an API request to the backend aside from axios.
-    return fetch(`${process.env.REACT_APP_API_URL}/api/signup`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/signup`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -21,7 +21,7 @@ export const signup = user => {
 
 export const signin = user => {
     // Another way to send an API request to the backend aside from axios.
-    return fetch(`${process.env.REACT_APP_API_URL}/api/signin`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/signin`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -42,7 +42,7 @@ export const signout = (next) => {
     if (typeof window !== "undefined") localStorage.removeItem("jwt");
     next();
     // Will eventually change to environment variable.
-    return fetch(`${process.env.REACT_APP_API_URL}/api/signout`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/signout`, {
         method: "GET"
     })
         .then(response => {
