@@ -12,7 +12,9 @@ class EditProfile extends Component {
             email: "",
             password: "",
             error: "",
-            redirectToProfile: false
+            redirectToProfile: false,
+            fileSize: 0,
+            loading: false
         }
     }
 
@@ -62,27 +64,22 @@ class EditProfile extends Component {
     // This is a higher order function: a function that returns another function. We need this to handle events.
     handleChange = name => event => {
         // If the name matches the photo then we want to get the file, otherwise it grabs the event.target.value
-        const value = name === 'photo' ? event.target.files[0] : event.target.value
+        const value = name === 'photo' ? event.target.files[0] : event.target.value;
+        const fileSize = name === 'photo' ? event.target.files[0].size : 0;
         // Sets the userData with the new updated information so we can send it to the backend.
         this.userData.set(name, value);
-        this.setState({ [name]: value });
+        this.setState({ [name]: value, fileSize });
     };
 
     clickSubmit = event => {
         // By default when the user clicks the submit button the page refreshes so that's why we're disabling it.
         event.preventDefault();
+        this.setState({ loading: true});
 
-        if (this.isValid()) {
-            const { name, email, password } = this.state;
-            const user = {
-                name,
-                email,
-                password: password || undefined
-            };
-      
-            // This handles errors when the user is signing up. (Eg. Email is already in use.)
+        if (this.isValid()) {      
             const userId = this.props.match.params.userId;
             const token = isAuthenticated().token;
+
             update(userId, token, this.userData).then(data => {
                 if (data.error) {
                     this.setState({ error: data.error });
@@ -117,7 +114,16 @@ class EditProfile extends Component {
     )
 
     render() {
-        const { id, name, email, password, error, redirectToProfile } = this.state;
+        const {
+            id,
+            name,
+            email,
+            password,
+            error,
+            redirectToProfile,
+            loading
+        } = this.state;
+
         if (redirectToProfile) {
             return <Redirect to={`/user/${id}`}/>;
         }
@@ -127,6 +133,11 @@ class EditProfile extends Component {
                 <h2 className="mt-5 mb-5">Edit Profile</h2>
 
                 <div className="alert alert-danger" style={{ display: error ? "" :" none" }}>{error}</div>
+
+                {/* If loading is true then it displays loading..., else it returns an empty string(nothing). */}
+                {loading ? <div className="jumbotron text-center">
+                    <h6>Loading...</h6>
+                </div> : ""}
 
                 {this.signupForm(name, email, password)}
             </div>
