@@ -11,6 +11,7 @@ class EditProfile extends Component {
             name: "",
             email: "",
             password: "",
+            error: "",
             redirectToProfile: false
         }
     }
@@ -38,6 +39,25 @@ class EditProfile extends Component {
         this.init(userId);
     };
 
+    isValid = () => {
+        const { name, email, password } = this.state;
+        if (name.length === 0) {
+            this.setState({ error: "Name is required."});
+            return false;
+        }
+        // Checks if email is valid using a regular expression: email@domain.com.
+        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            this.setState({ error: "A valid email is required."});
+            return false;
+        }
+        // Makes sure the password length is at least 6 characters long.
+        if (password.length >= 1 && password.length <= 5) {
+            this.setState({ error: "Password must be at least 6 characters long."});
+            return false;
+        }
+        return true;
+    }
+
     // This is a higher order function: a function that returns another function. We need this to handle events.
     handleChange = name => event => {
         // When there's a change happening in user signup input it will clear the old errors.
@@ -47,24 +67,27 @@ class EditProfile extends Component {
     clickSubmit = event => {
         // By default when the user clicks the submit button the page refreshes so that's why we're disabling it.
         event.preventDefault();
-        const { name, email, password } = this.state;
-        const user = {
-            name,
-            email,
-            password: password || undefined
-        };
-  
-        // console.log(user);
-        // This handles errors when the user is signing up. (Eg. Email is already in use.)
-        const userId = this.props.match.params.userId;
-        const token = isAuthenticated().token;
-        update(userId, token, user).then(data => {
-            if (data.error) {
-                this.setState({ error: data.error });
-            } else {
-                this.setState({ redirectToProfile: true });
-            }
-        });
+
+        if (this.isValid()) {
+            const { name, email, password } = this.state;
+            const user = {
+                name,
+                email,
+                password: password || undefined
+            };
+      
+            // console.log(user);
+            // This handles errors when the user is signing up. (Eg. Email is already in use.)
+            const userId = this.props.match.params.userId;
+            const token = isAuthenticated().token;
+            update(userId, token, user).then(data => {
+                if (data.error) {
+                    this.setState({ error: data.error });
+                } else {
+                    this.setState({ redirectToProfile: true });
+                }
+            });
+        }
 
     };
 
@@ -87,7 +110,7 @@ class EditProfile extends Component {
     )
 
     render() {
-        const { id, name, email, password, redirectToProfile } = this.state;
+        const { id, name, email, password, error, redirectToProfile } = this.state;
         if (redirectToProfile) {
             return <Redirect to={`/user/${id}`}/>;
         }
@@ -95,6 +118,9 @@ class EditProfile extends Component {
         return (
             <div className="container">
                 <h2 className="mt-5 mb-5">Edit Profile</h2>
+
+                <div className="alert alert-danger" style={{ display: error ? "" :" none" }}>{error}</div>
+
                 {this.signupForm(name, email, password)}
             </div>
         )
