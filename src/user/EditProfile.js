@@ -35,6 +35,7 @@ class EditProfile extends Component {
 
     // A lifecycle method (?), when this component mounts we get the userId to make a GET request to the backend.
     componentDidMount() {
+        this.userData = new FormData();
         const userId = this.props.match.params.userId;
         this.init(userId);
     };
@@ -60,8 +61,11 @@ class EditProfile extends Component {
 
     // This is a higher order function: a function that returns another function. We need this to handle events.
     handleChange = name => event => {
-        // When there's a change happening in user signup input it will clear the old errors.
-        this.setState({ [name]: event.target.value });
+        // If the name matches the photo then we want to get the file, otherwise it grabs the event.target.value
+        const value = name === 'photo' ? event.target.files[0] : event.target.value
+        // Sets the userData with the new updated information so we can send it to the backend.
+        this.userData.set(name, value);
+        this.setState({ [name]: value });
     };
 
     clickSubmit = event => {
@@ -76,11 +80,10 @@ class EditProfile extends Component {
                 password: password || undefined
             };
       
-            // console.log(user);
             // This handles errors when the user is signing up. (Eg. Email is already in use.)
             const userId = this.props.match.params.userId;
             const token = isAuthenticated().token;
-            update(userId, token, user).then(data => {
+            update(userId, token, this.userData).then(data => {
                 if (data.error) {
                     this.setState({ error: data.error });
                 } else {
@@ -93,6 +96,10 @@ class EditProfile extends Component {
 
     signupForm = (name, email, password) => (
         <form>
+            <div className="form-group">
+                <label className="text-muted">Profile Photo</label>
+                <input onChange={this.handleChange("photo")} className="form-control" type="file" accept="image/*"/>
+            </div>
             <div className="form-group">
                 <label className="text-muted">Name</label>
                 <input onChange={this.handleChange("name")} className="form-control" type="text" value={name}/>
