@@ -43,7 +43,7 @@ class EditProfile extends Component {
     };
 
     isValid = () => {
-        const { name, email, password } = this.state;
+        const { name, email, password, fileSize } = this.state;
         if (name.length === 0) {
             this.setState({ error: "Name is required."});
             return false;
@@ -58,13 +58,21 @@ class EditProfile extends Component {
             this.setState({ error: "Password must be at least 6 characters long."});
             return false;
         }
+        // Checks to make sure the file size is less than 100 KB.
+        if (fileSize > 100000) {
+            this.setState({ error: "File size is too big, must be less than 100 KB."});
+            return false;
+        }
         return true;
     }
 
     // This is a higher order function: a function that returns another function. We need this to handle events.
     handleChange = name => event => {
+        // Clears the error when the user changes any of the input.
+        this.setState({ error: "" })
         // If the name matches the photo then we want to get the file, otherwise it grabs the event.target.value
         const value = name === 'photo' ? event.target.files[0] : event.target.value;
+        // If the name is photo then we get the file size, otherwise the default file size is 0.
         const fileSize = name === 'photo' ? event.target.files[0].size : 0;
         // Sets the userData with the new updated information so we can send it to the backend.
         this.userData.set(name, value);
