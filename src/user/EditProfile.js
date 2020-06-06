@@ -16,7 +16,8 @@ class EditProfile extends Component {
             error: "",
             redirectToProfile: false,
             fileSize: 0,
-            loading: false
+            loading: false,
+            about: ""
         }
     }
 
@@ -31,6 +32,7 @@ class EditProfile extends Component {
                     id: data._id,
                     name: data.name,
                     email: data.email,
+                    about: data.about,
                     error: ""
                  });
             }
@@ -101,7 +103,7 @@ class EditProfile extends Component {
 
     };
 
-    signupForm = (name, email, password) => (
+    signupForm = (name, email, password, about) => (
         <form>
             <div className="form-group">
                 <label className="text-muted">Profile Photo</label>
@@ -111,6 +113,12 @@ class EditProfile extends Component {
                 <label className="text-muted">Name</label>
                 <input onChange={this.handleChange("name")} className="form-control" type="text" value={name}/>
             </div>
+
+            <div className="form-group">
+                <label className="text-muted">About</label>
+                <input onChange={this.handleChange("about")} className="form-control" type="text" value={about}/>
+            </div>
+
             <div className="form-group">
                 <label className="text-muted">Email</label>
                 <input onChange={this.handleChange("email")} className="form-control" type="email" value={email}/>
@@ -131,7 +139,8 @@ class EditProfile extends Component {
             password,
             error,
             redirectToProfile,
-            loading
+            loading,
+            about
         } = this.state;
 
         if (redirectToProfile) {
@@ -163,7 +172,7 @@ class EditProfile extends Component {
                     alt={name}
                 />
 
-                {this.signupForm(name, email, password)}
+                {this.signupForm(name, email, password, about)}
             </div>
         )
     }
