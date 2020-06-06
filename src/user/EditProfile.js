@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { isAuthenticated } from '../auth';
-import { read, update } from './apiUser';
+import { read, update, updateUser } from './apiUser';
 import { Redirect } from 'react-router-dom';
 import DefaultProfile from '../images/profilepic.jpg';
+
 
 
 class EditProfile extends Component {
@@ -49,22 +50,22 @@ class EditProfile extends Component {
     isValid = () => {
         const { name, email, password, fileSize } = this.state;
         if (name.length === 0) {
-            this.setState({ error: "Name is required."});
+            this.setState({ error: "Name is required.", loading: false });
             return false;
         }
         // Checks if email is valid using a regular expression: email@domain.com.
         if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-            this.setState({ error: "A valid email is required."});
+            this.setState({ error: "A valid email is required.", loading: false });
             return false;
         }
         // Makes sure the password length is at least 6 characters long.
         if (password.length >= 1 && password.length <= 5) {
-            this.setState({ error: "Password must be at least 6 characters long."});
+            this.setState({ error: "Password must be at least 6 characters long.", loading: false });
             return false;
         }
         // Checks to make sure the file size is less than 200 KB.
         if (fileSize > 200000) {
-            this.setState({ error: "File size is too big, must be less than 200 KB."});
+            this.setState({ error: "File size is too big, must be less than 200 KB.", loading: false });
             return false;
         }
         return true;
@@ -96,7 +97,9 @@ class EditProfile extends Component {
                 if (data.error) {
                     this.setState({ error: data.error });
                 } else {
-                    this.setState({ redirectToProfile: true });
+                    updateUser(data, () => {
+                        this.setState({ redirectToProfile: true });
+                    });
                 }
             });
         }
