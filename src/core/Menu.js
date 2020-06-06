@@ -33,6 +33,16 @@ const Menu = ({history}) => (
             {/* If the user is authenticated then we display the sign out component. */}
             {isAuthenticated() && (
                 <>
+                    {/* For Section 15: Posts and Users */}
+                    <li className="nav-item">
+                        <Link
+                            to={`/post/create`}
+                            style={isActive(history, `/post/create`)}
+                            className="nav-link"
+                        >
+                            Create Post
+                        </Link>
+                    </li>
                     <li className="nav-item">
                         {/* We use the a tag because we're not trying to navigate the user to another component. */}
                         <span className="nav-link" style={(isActive(history, "/signup"), {cursor: "pointer"})} onClick={() => signout(() => history.push('/'))}>Sign Out</span>
