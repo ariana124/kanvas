@@ -6,7 +6,11 @@ const {
     getUser,
     updateUser,
     deleteUser,
-    userPhoto
+    userPhoto,
+    addFollowing,
+    addFollower,
+    removeFollowing,
+    removeFollower
 } = require('../controllers/user')
 const {requireSignin} = require('../controllers/auth')
 
@@ -16,6 +20,9 @@ router.put('/user/:userId', requireSignin, updateUser)
 router.delete('/user/:userId', requireSignin, deleteUser)
 // Route to show user profile picture.
 router.get('/user/photo/:userId', userPhoto)
+// Route for following and follower list, it has to be in this specific order.
+router.put('/user/follow', requireSignin, addFollowing, addFollower)
+router.put('/user/unfollow', requireSignin, removeFollowing, removeFollower)
 
 // Any routes containing :userId, our app will first execute userById()
 // adds profile object in req with user info
