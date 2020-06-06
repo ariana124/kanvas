@@ -28,11 +28,14 @@ class Users extends Component {
             /controllers/users.js allUsers method once KP merges the backend.*/}
             {users.map((user, i) => (
                 <div className="card col-md-4" key={i}>
+                    {/* If there's an error when displaying the user's profile image, it displays the default image instead. */}
                     <img 
-                        className="card-img-top" 
-                        src={DefaultProfile} 
+                        className="img-thumbnail"
+                        style={{height: "350px", width: "auto"}}
+                        src={`${process.env.REACT_APP_API_URL}/user/photo/${user._id}`}
+                        onError={i => (i.target.src = `${DefaultProfile}`)}
                         alt={user.name}
-                        style={{ width: '100%', height: '25vw', objectFit: 'cover' }}/>
+                    />
                     <div className="card-body">
                         <h5 className="card-title">{user.name}</h5>
                         <p className="card-text">The user's bio or short self intro would go here.</p>
