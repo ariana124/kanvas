@@ -7,6 +7,7 @@ import Signin from './user/Signin';
 import Profile from './user/Profile';
 import Users from './user/Users';
 import EditProfile from './user/EditProfile';
+import NewPost from './post/NewPost';
 import PrivateRoute from './auth/PrivateRoute';
 
 
@@ -22,6 +23,7 @@ const MainRouter = () => (
             {/* Now only logged in users can view other people's profiles or edit their own profile. */}
             <PrivateRoute exact path="/user/:userId" component={Profile}/>
             <PrivateRoute exact path="/user/edit/:userId" component={EditProfile}/>
+            <PrivateRoute exact path="/post/create" component={NewPost}/>
         </Switch>
     </div>
 )
