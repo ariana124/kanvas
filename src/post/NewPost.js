@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { isAuthenticated } from '../auth';
 import { create } from './apiPost';
 import { Redirect } from 'react-router-dom';
-import DefaultProfile from '../images/avatar.jpg';
+import DefaultProfile from '../images/profilepic.jpg';
 
 
 class NewPost extends Component {
@@ -15,7 +15,8 @@ class NewPost extends Component {
             error: '',
             user: {},
             filesize: 0,
-            loading: false
+            loading: false,
+            redirectToProfile: false
         };
     }
 
@@ -31,13 +32,13 @@ class NewPost extends Component {
         if (fileSize > 100000) {
             this.setState({ error: "File size is too big, must be less than 100kb",
             loading: false
-          });
+            });
             return false;
         }
 
         if (title.length === 0 || body.length === 0) {
-          this.setState({ error: "All fields are required", loading: false});
-          return false;
+            this.setState({ error: "All fields are required", loading: false});
+            return false;
         }
         return true;
     };
@@ -70,7 +71,13 @@ class NewPost extends Component {
                 if (data.error) {
                     this.setState({ error: data.error });
                 } else {
-                    console.log("New Post: ", data)
+                    this.setState({
+                        loading: false,
+                        title: "",
+                        body: "",
+                        photo: "",
+                        redirectToProfile: true
+                    });
                 }
             });
         }
@@ -87,27 +94,20 @@ class NewPost extends Component {
                 <input onChange={this.handleChange("title")} className="form-control" type="text" value={title}/>
             </div>
             <div className="form-group">
-              <label className="text-muted">Body</label>
-              <textarea onChange={this.handleChange("body")} type="text" className="form-control" value={body}/>
+                <label className="text-muted">Body</label>
+                <textarea onChange={this.handleChange("body")} type="text" className="form-control" value={body}/>
             </div>
             <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">Create Post</button>
         </form> 
     )
 
     render() {
-        const {
-            title,
-            body,
-            photo,
-            user,
-        } = this.state;
+        const { title, body, photo, user, error, loading, redirectToProfile } = this.state;
 
-        // if (redirectToProfile) {
-        //     return <Redirect to={`/user/${id}`}/>;
-        // }
+        if (redirectToProfile) {
+            return <Redirect to={`/user/${user._id}`}/>;
+        }
 
-        // If the user has a profile picture then it displays that photo, otherwise it displays the default profile photo.
-        const photoUrl = id ? `${process.env.REACT_APP_API_URL}/user/photo/${id}?${new Date().getTime()}` : DefaultProfile
 
         return (
             <div className="container">
@@ -122,14 +122,6 @@ class NewPost extends Component {
                     </div>
                     ) : ("")
                 }
-
-                {/* <img 
-                    className="img-thumbnail"
-                    style={{height: "200px", width: "auto"}}
-                    src={photoUrl}
-                    onError={i => (i.target.src = `${DefaultProfile}`)}
-                    alt={name}
-                /> */}
 
                 {this.newPostForm(title, body)}
             </div>
