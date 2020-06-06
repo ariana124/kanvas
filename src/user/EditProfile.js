@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { isAuthenticated } from '../auth';
-import { read, update } from './apiUser';
+import { read, update, updateUser } from './apiUser';
 import { Redirect } from 'react-router-dom';
 import DefaultProfile from '../images/profilepic.jpg';
+
 
 
 class EditProfile extends Component {
@@ -16,7 +17,8 @@ class EditProfile extends Component {
             error: "",
             redirectToProfile: false,
             fileSize: 0,
-            loading: false
+            loading: false,
+            about: ""
         }
     }
 
@@ -31,6 +33,7 @@ class EditProfile extends Component {
                     id: data._id,
                     name: data.name,
                     email: data.email,
+                    about: data.about,
                     error: ""
                  });
             }
@@ -47,22 +50,22 @@ class EditProfile extends Component {
     isValid = () => {
         const { name, email, password, fileSize } = this.state;
         if (name.length === 0) {
-            this.setState({ error: "Name is required."});
+            this.setState({ error: "Name is required.", loading: false });
             return false;
         }
         // Checks if email is valid using a regular expression: email@domain.com.
         if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-            this.setState({ error: "A valid email is required."});
+            this.setState({ error: "A valid email is required.", loading: false });
             return false;
         }
         // Makes sure the password length is at least 6 characters long.
         if (password.length >= 1 && password.length <= 5) {
-            this.setState({ error: "Password must be at least 6 characters long."});
+            this.setState({ error: "Password must be at least 6 characters long.", loading: false });
             return false;
         }
         // Checks to make sure the file size is less than 200 KB.
         if (fileSize > 200000) {
-            this.setState({ error: "File size is too big, must be less than 200 KB."});
+            this.setState({ error: "File size is too big, must be less than 200 KB.", loading: false });
             return false;
         }
         return true;
@@ -94,14 +97,16 @@ class EditProfile extends Component {
                 if (data.error) {
                     this.setState({ error: data.error });
                 } else {
-                    this.setState({ redirectToProfile: true });
+                    updateUser(data, () => {
+                        this.setState({ redirectToProfile: true });
+                    });
                 }
             });
         }
 
     };
 
-    signupForm = (name, email, password) => (
+    signupForm = (name, email, password, about) => (
         <form>
             <div className="form-group">
                 <label className="text-muted">Profile Photo</label>
@@ -111,6 +116,12 @@ class EditProfile extends Component {
                 <label className="text-muted">Name</label>
                 <input onChange={this.handleChange("name")} className="form-control" type="text" value={name}/>
             </div>
+
+            <div className="form-group">
+                <label className="text-muted">About</label>
+                <input onChange={this.handleChange("about")} className="form-control" type="text" value={about}/>
+            </div>
+
             <div className="form-group">
                 <label className="text-muted">Email</label>
                 <input onChange={this.handleChange("email")} className="form-control" type="email" value={email}/>
@@ -131,7 +142,8 @@ class EditProfile extends Component {
             password,
             error,
             redirectToProfile,
-            loading
+            loading,
+            about
         } = this.state;
 
         if (redirectToProfile) {
@@ -163,7 +175,7 @@ class EditProfile extends Component {
                     alt={name}
                 />
 
-                {this.signupForm(name, email, password)}
+                {this.signupForm(name, email, password, about)}
             </div>
         )
     }

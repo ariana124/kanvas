@@ -4,7 +4,11 @@ const formidable = require('formidable')
 const fs = require('fs')
 
 exports.userById = (req, res, next, id) => {
-  User.findById(id).exec((err, user) => {
+  User.findById(id)
+  // Populate the followers and following users array.
+  .populate('following', '_id name')
+  .populate('followers', '_id name')
+  .exec((err, user) => {
     if (err || !user) {
       res.status(400).json({
         error: "User not found"
@@ -40,22 +44,6 @@ exports.getUser = (req, res) => {
   req.profile.salt = undefined
   return res.json(req.profile)
 }
-
-// exports.updateUser = (req, res, next) => {
-//   let user = req.profile
-//   user = _.extend(user, req.body) // extend - mutate the srouce object
-//   user.updated = Date.now()
-//   user.save((err) => {
-//     if (err) {
-//       return res.status(400).json({
-//         error: 'You are not authorized to perform this action'
-//       })
-//     }
-//     user.hashed_password = undefined
-//     user.salt = undefined
-//     res.json({user})
-//   })
-// }
 
 exports.updateUser = (req, res, next) => {
   let form = new formidable.IncomingForm()
@@ -108,5 +96,70 @@ exports.deleteUser = (req, res, next) => {
       })
     }
     res.json({message: 'User deleted successfully'})
+  })
+}
+
+// Follow and unfollow
+exports.addFollowing = (req, res, next) => {
+  // This means the logged in user is following the user in the push curly braces.
+  User.findByIdAndUpdate(
+    req.body.userById,
+    // The followId will be created in the frontend.
+    {$push: { following: req.body.followId }}, (err, result) => {
+      if (err) {
+        return res.status(400).json({ error: err});
+      }
+      next()
+    }
+  )
+}
+
+exports.addFollower = (req, res) => {
+  User.findByIdAndUpdate(
+    req.body.followId,
+    {$push: { followers: req.body.userId }},
+    {new: true}, // This is so that the data we get back is the updated data not the old one. 
+  )
+  .populate('following', '_id name')
+  .populate('followers', '_id name')
+  .exec((err, result) => {
+    if (err) {
+      return res.status(400).json({ error: err })
+    }
+    result.hashed_password = undefined
+    result.salt = undefined
+    res.json(result)
+  })
+}
+
+exports.removeFollowing = (req, res, next) => {
+  // This means the logged in user is following the user in the pull curly braces.
+  User.findByIdAndUpdate(
+    req.body.userById,
+    // The unfollowId will be created in the frontend.
+    {$pull: { following: req.body.unfollowId }}, (err, result) => {
+      if (err) {
+        return res.status(400).json({ error: err});
+      }
+      next()
+    }
+  )
+}
+
+exports.removeFollower = (req, res) => {
+  User.findByIdAndUpdate(
+    req.body.unfollowId,
+    {$pull: { followers: req.body.userId }},
+    {new: true}, // This is so that the data we get back is the updated data not the old one. 
+  )
+  .populate('following', '_id name')
+  .populate('followers', '_id name')
+  .exec((err, result) => {
+    if (err) {
+      return res.status(400).json({ error: err })
+    }
+    result.hashed_password = undefined
+    result.salt = undefined
+    res.json(result)
   })
 }
