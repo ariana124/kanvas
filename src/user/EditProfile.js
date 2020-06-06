@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { isAuthenticated } from '../auth';
 import { read, update } from './apiUser';
 import { Redirect } from 'react-router-dom';
+import DefaultProfile from '../images/profilepic.jpg';
+
 
 class EditProfile extends Component {
     constructor() {
@@ -58,9 +60,9 @@ class EditProfile extends Component {
             this.setState({ error: "Password must be at least 6 characters long."});
             return false;
         }
-        // Checks to make sure the file size is less than 100 KB.
-        if (fileSize > 100000) {
-            this.setState({ error: "File size is too big, must be less than 100 KB."});
+        // Checks to make sure the file size is less than 200 KB.
+        if (fileSize > 200000) {
+            this.setState({ error: "File size is too big, must be less than 200 KB."});
             return false;
         }
         return true;
@@ -136,6 +138,9 @@ class EditProfile extends Component {
             return <Redirect to={`/user/${id}`}/>;
         }
 
+        // If the user has a profile picture then it displays that photo, otherwise it displays the default profile photo.
+        const photoUrl = id ? `${process.env.REACT_APP_API_URL}/user/photo/${id}?${new Date().getTime()}` : DefaultProfile
+
         return (
             <div className="container">
                 <h2 className="mt-5 mb-5">Edit Profile</h2>
@@ -143,9 +148,20 @@ class EditProfile extends Component {
                 <div className="alert alert-danger" style={{ display: error ? "" :" none" }}>{error}</div>
 
                 {/* If loading is true then it displays loading..., else it returns an empty string(nothing). */}
-                {loading ? <div className="jumbotron text-center">
-                    <h6>Loading...</h6>
-                </div> : ""}
+                {loading ? (
+                    <div className="jumbotron text-center">
+                        <h6>Loading...</h6>
+                    </div>
+                    ) : ("")
+                }
+
+                <img 
+                    className="img-thumbnail"
+                    style={{height: "200px", width: "auto"}}
+                    src={photoUrl}
+                    onError={i => (i.target.src = `${DefaultProfile}`)}
+                    alt={name}
+                />
 
                 {this.signupForm(name, email, password)}
             </div>
