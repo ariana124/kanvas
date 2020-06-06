@@ -78,6 +78,14 @@ class Profile extends Component {
                         )}
                     </div>
                 </div>
+
+                <div className="row">
+                    <div className="col md-12 mt-4">
+                        <hr />
+                        <p className="lead">{user.about}</p>
+                    </div>
+                </div>
+
             </div>
         )
     }
