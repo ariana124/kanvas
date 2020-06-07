@@ -39,3 +39,21 @@ export const singlePost = (postId) => {
       .catch((err) => console.log(err))
   );
 };
+
+export const listByUser = (userId) => {
+  return (
+    fetch(`${process.env.REACT_APP_API_URL}/post/by/${userId}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        'Content-Type': "application/json",
+        Authorization: `Bearer ${token}`,
+      }
+    })
+      // This returns the json response with the user's information.
+      .then((response) => {
+        return response.json();
+      })
+      .catch((err) => console.log(err))
+  );
+};
