@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { singlePost } from './apiPost'
+import { Link, Redirect } from 'react-router-dom';
+import { singlePost, remove } from './apiPost'
 import DefaultPost from '../images/castle.jpg';
 import { isAuthenticated } from '../auth';
 
 class SinglePost extends Component {
     state = {
-        post: ''
+        post: '',
+        redirectToHome: false
     }
 
     componentDidMount = () => {
@@ -20,6 +21,17 @@ class SinglePost extends Component {
         })
     }
 
+    deletePost = () => {
+        const postId = this.props.match.params.postId
+        const token = isAuthenticated().token
+        remove(postId, token).then(data => {
+            if (data.error) {
+                console.log(data.error)
+            } else {
+                this.setState({redirectToHome: true})
+            }
+        })
+    }
     renderPost = (post) => {
         const posterId = post.postedBy ? `/user/${post.postedBy._id}` : ""
         const posterName = post.postedBy ? post.postedBy.name : " Unknown"
@@ -43,7 +55,7 @@ class SinglePost extends Component {
                     {isAuthenticated().user && isAuthenticated().user._id === post.postedBy._id &&
                     <>
                         <button className="btn btn-raised btn-warning mr-5">Update Post</button>
-                        <button className="btn btn-raised btn-danger mr-5">Delete Post</button>
+                        <button onClick={this.deletePost} className="btn btn-raised btn-danger mr-5">Delete Post</button>
                     </>
                     }
                 </div>
@@ -51,6 +63,9 @@ class SinglePost extends Component {
         )
     }
     render() {
+        if (this.state.redirectToHome) {
+            return <Redirect to={`/`} />
+        }
         const {post} = this.state
         return (
             <div className="container">
