@@ -32,6 +32,14 @@ class SinglePost extends Component {
             }
         })
     }
+
+    deleteConfirmed = () => {
+        let answer = window.confirm("Are you sure you want to delete your account?")
+        if (answer) {
+            this.deletePost();
+        }
+    };
+
     renderPost = (post) => {
         const posterId = post.postedBy ? `/user/${post.postedBy._id}` : ""
         const posterName = post.postedBy ? post.postedBy.name : " Unknown"
@@ -54,8 +62,8 @@ class SinglePost extends Component {
                     <Link to={`/`} className="btn btn-raised btn-sm btn-primary mr-5">Back to Posts</Link>
                     {isAuthenticated().user && isAuthenticated().user._id === post.postedBy._id &&
                     <>
-                        <button className="btn btn-raised btn-warning mr-5">Update Post</button>
-                        <button onClick={this.deletePost} className="btn btn-raised btn-danger mr-5">Delete Post</button>
+                        <Link to={`/post/edit/${post._id}`} className="btn btn-raised btn-sm btn-warning mr-5">Update Post</Link>
+                        <button onClick={this.deleteConfirmed} className="btn btn-raised btn-danger mr-5">Delete Post</button>
                     </>
                     }
                 </div>
