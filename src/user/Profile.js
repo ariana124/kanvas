@@ -18,26 +18,26 @@ class Profile extends Component {
   }
 
   // a method to check follow
-  checkFollow = (user) => {
+  checkFollow = user => {
     const jwt = isAuthenticated();
-    const match = user.followers.find((follower) => {
+    const match = user.followers.find(follower => {
       // one id has many other ids (followers) and vice versa
       return follower._id === jwt.user._id;
     });
     return match;
   };
 
-  clickFollowButton = (callApi) => {
+  clickFollowButton = callApi => {
     const userId = isAuthenticated().user._id;
     const token = isAuthenticated().token;
 
-    callApi(userId, token, this.state.user._id).then((data) => {
-      if (data.error) {
-        this.setState({ error: data.error });
-      } else {
-        this.setState({ user: data, following: !this.state.following });
-      }
-    });
+    callApi(userId, token, this.state.user._id).then(data => {
+        if (data.error) {
+          this.setState({ error: data.error });
+        } else {
+          this.setState({ user: data, following: !this.state.following });
+        }
+      });
   };
 
   init = (userId) => {

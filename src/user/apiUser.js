@@ -85,10 +85,10 @@ export const follow = (userId, token, followId) => {
     },
     body: JSON.stringify({ userId, followId }),
   })
-    .then((response) => {
+    .then(response => {
       return response.json();
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 };
 
 export const unfollow = (userId, token, unfollowId) => {
@@ -101,8 +101,8 @@ export const unfollow = (userId, token, unfollowId) => {
     },
     body: JSON.stringify({ userId, unfollowId }),
   })
-    .then((response) => {
+    .then(response => {
       return response.json();
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 };

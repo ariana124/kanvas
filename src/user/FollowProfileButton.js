@@ -23,7 +23,7 @@ class FollowProfileButton extends Component {
         ) : (
           <button
             onClick={this.unfollowClick}
-            className="btn btn-success btn-raised"
+            className="btn btn-warning btn-raised"
           >
             Unfollow
           </button>
