@@ -5,6 +5,7 @@ import { read } from "./apiUser";
 import DefaultProfile from "../images/profilepic.jpg";
 import DeleteUser from "./DeleteUser";
 import FollowProfileButton from "./FollowProfileButton";
+import ProfileTabs from './ProfileTabs'
 
 class Profile extends Component {
   constructor() {
@@ -17,15 +18,15 @@ class Profile extends Component {
     };
   }
 
-  // a method to check follow
+  // a method to check a user's follower's list and returns a true or false
   checkFollow = user => {
     const jwt = isAuthenticated();
     const match = user.followers.find(follower => {
-      // one id has many other ids (followers) and vice versa
-      return follower._id === jwt.user._id;
+        // one id has many other ids (followers) and vice versa
+        return follower._id === jwt.user._id;
     });
     return match;
-  };
+};
 
   clickFollowButton = callApi => {
     const userId = isAuthenticated().user._id;
@@ -37,8 +38,8 @@ class Profile extends Component {
         } else {
           this.setState({ user: data, following: !this.state.following });
         }
-      });
-  };
+    });
+};
 
   init = (userId) => {
     const token = isAuthenticated().token;
@@ -98,9 +99,8 @@ class Profile extends Component {
             </div>
             {/* This checks if the user is authenticated and it matches the current user it will display the edit and delete buttons. */}
             {isAuthenticated().user &&
-              isAuthenticated().user._id === user._id ? (
+            isAuthenticated().user._id === user._id ? (
                 <div className="d-inline-block">
-                  {/* Might need to add the /api route later. */}
                   <Link
                     className="btn btn-raised btn-success mr-5"
                     to={`/user/edit/${user._id}`}
@@ -109,12 +109,17 @@ class Profile extends Component {
                   </Link>
                   <DeleteUser userId={user._id} />
                 </div>
-              ) : (
-                  <FollowProfileButton
-                    following={this.state.following}
-                    onButtonClick={this.clickFollowButton}
-                  />
-                )}
+            ) : (
+                <FollowProfileButton
+                  following={this.state.following}
+                  onButtonClick={this.clickFollowButton}
+                />
+            )}
+            
+            <hr />
+            <ProfileTabs
+              followers={user.followers}
+              following={user.following} />
           </div>
         </div>
 
