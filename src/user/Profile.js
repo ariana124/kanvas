@@ -116,10 +116,6 @@ class Profile extends Component {
                 />
             )}
             
-            <hr />
-            <ProfileTabs
-              followers={user.followers}
-              following={user.following} />
           </div>
         </div>
 
@@ -127,6 +123,11 @@ class Profile extends Component {
           <div className="col md-12 mt-4">
             <hr />
             <p className="lead">{user.about}</p>
+            <hr />
+
+            <ProfileTabs
+              followers={user.followers}
+              following={user.following} />
           </div>
         </div>
       </div>
