@@ -32,8 +32,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-  following: [{ type: ObjectId, ref: "User" }],
-  followers: [{ type: ObjectId, ref: "User" }]
+  following: [{ type: ObjectId, ref: "User" }], // Array of users the logged in user is following.
+  followers: [{ type: ObjectId, ref: "User" }] // Array of users following the logged in user.
 })
 
 
