@@ -5,12 +5,12 @@ const fs = require('fs')
 
 exports.userById = (req, res, next, id) => {
   User.findById(id)
-  // Populate the followers and following users array.
+  // Populates the following and followers array.
   .populate('following', '_id name')
   .populate('followers', '_id name')
   .exec((err, user) => {
     if (err || !user) {
-      res.status(400).json({
+      return res.status(400).json({
         error: "User not found"
       })
     }
@@ -103,7 +103,7 @@ exports.deleteUser = (req, res, next) => {
 exports.addFollowing = (req, res, next) => {
   // This means the logged in user is following the user in the push curly braces.
   User.findByIdAndUpdate(
-    req.body.userById,
+    req.body.userId,
     // The followId will be created in the frontend.
     {$push: { following: req.body.followId }}, (err, result) => {
       if (err) {
@@ -118,11 +118,11 @@ exports.addFollower = (req, res) => {
   User.findByIdAndUpdate(
     req.body.followId,
     {$push: { followers: req.body.userId }},
-    {new: true}, // This is so that the data we get back is the updated data not the old one. 
+    {new: true} // This is so that the data we get back is the updated data not the old one. 
   )
   .populate('following', '_id name')
   .populate('followers', '_id name')
-  .exec((err, result) => {
+  .exec((err, result) => { // The result contains the user's following and followers list.
     if (err) {
       return res.status(400).json({ error: err })
     }
@@ -135,7 +135,7 @@ exports.addFollower = (req, res) => {
 exports.removeFollowing = (req, res, next) => {
   // This means the logged in user is following the user in the pull curly braces.
   User.findByIdAndUpdate(
-    req.body.userById,
+    req.body.userId,
     // The unfollowId will be created in the frontend.
     {$pull: { following: req.body.unfollowId }}, (err, result) => {
       if (err) {
@@ -150,7 +150,7 @@ exports.removeFollower = (req, res) => {
   User.findByIdAndUpdate(
     req.body.unfollowId,
     {$pull: { followers: req.body.userId }},
-    {new: true}, // This is so that the data we get back is the updated data not the old one. 
+    {new: true} // This is so that the data we get back is the updated data not the old one. 
   )
   .populate('following', '_id name')
   .populate('followers', '_id name')
