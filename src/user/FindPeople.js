@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { findPeople } from './apiUser';
+import { findPeople, follow } from './apiUser';
 import DefaultProfile from '../images/profilepic.jpg';
 import { Link } from 'react-router-dom';
-import { isAuthenticaled, isAuthenticated } from '../auth';
+import { isAuthenticated } from '../auth';
 
 
 class FindPeople extends Component {
@@ -14,14 +14,36 @@ class FindPeople extends Component {
     }
 
     componentDidMount() {
-        FindPeople().then(data => {
+        const userId = isAuthenticated().user._id;
+        const token = isAuthenticated().token;
+
+        findPeople(userId, token).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
                 this.setState({ users: data });
             }
-        })
+        });
     }
+
+    clickFollow = (user, i) => {
+        const userId = isAuthenticated().user._id;
+        const token = isAuthenticated().token;
+
+        follow(userId, token, user._id).then(data => {
+            if (data.error) {
+                this.setState({ error: data.error });
+            } else {
+                let toFollow = this.state.users;
+                toFollow.splice(i, 1);
+                this.setState({
+                    users: toFollow,
+                    open: true,
+                    followMessage: `Following ${user.name}`
+                });
+            }
+        });
+    };
 
     renderUsers = (users) => (
         <div className="row">
@@ -58,4 +80,4 @@ class FindPeople extends Component {
     }
 }
 
-export default Users;
+export default FindPeople;
