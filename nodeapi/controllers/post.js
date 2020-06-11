@@ -158,7 +158,7 @@ exports.like = (req, res) => {
   // Finds the post and updates it with a like.
   Post.findByIdAndUpdate(
     req.body.postId,
-    {$push: { likes: res.body.userId }},
+    {$push: { likes: req.body.userId }},
     {new: true}
   ).exec((err, result) => {
     if(err) {
@@ -173,7 +173,7 @@ exports.unlike = (req, res) => {
   // Finds the post and removes the like with pull.
   Post.findByIdAndUpdate(
     req.body.postId,
-    {$pull: { likes: res.body.userId }},
+    {$pull: { likes: req.body.userId }},
     {new: true}
   ).exec((err, result) => {
     if(err) {
