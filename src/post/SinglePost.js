@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { singlePost, remove } from './apiPost'
+import { singlePost, remove, like, unlike } from './apiPost'
 import DefaultPost from '../images/castle.jpg';
 import { isAuthenticated } from '../auth';
 
 class SinglePost extends Component {
     state = {
         post: '',
-        redirectToHome: false
+        redirectToHome: false,
+       // redirectToSignin: false,
+        like: false,
+        likes: 0
     }
 
     componentDidMount = () => {
@@ -16,7 +19,33 @@ class SinglePost extends Component {
             if (data.error) {
                 console.log(data.error)
             } else {
-                this.setState({post: data})
+                this.setState({
+                    post: data,
+                    likes: data.likes.length
+                })
+            }
+        })
+    }
+
+    // likeToggle function sends a PUT request to the backend when the like button is clicked.
+    likeToggle = () => {
+        // If the post is liked then when the user clicks, they unlike it, otherwise the user clicks and adds a like to the post.
+        let callApi = this.state.like ? unlike : like
+
+        const userId = isAuthenticated().user._id
+        const postId = this.state.post._id
+        const token = isAuthenticated().token
+
+        callApi(userId, token, postId).then(data => {
+            if (data.error) {
+                console.log(data.error)
+            } else {
+                this.setState({
+                    /* If it was true then it becomes false, and if it was false then it becomes true.
+                       This is how it toggles the like unlike feature. */
+                    like: !this.state.like, 
+                    likes: data.likes.length
+                })
             }
         })
     }
@@ -44,6 +73,8 @@ class SinglePost extends Component {
         const posterId = post.postedBy ? `/user/${post.postedBy._id}` : ""
         const posterName = post.postedBy ? post.postedBy.name : " Unknown"
 
+        const {like, likes} = this.state
+
         return (
             <div className="card-body">
                 <img
@@ -52,6 +83,9 @@ class SinglePost extends Component {
                     className="img-thumbnail mb-3"
                     style={{ height: "300px", width: "100%", objectFit: 'cover' }}
                 />
+
+                <h3 onClick={this.likeToggle}>{likes} Like</h3>
+
                 <p className="card-text">{post.body}</p>
                 <br/>
                 <p className="font-italic mark">
