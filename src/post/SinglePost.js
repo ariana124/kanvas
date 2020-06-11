@@ -8,7 +8,7 @@ class SinglePost extends Component {
     state = {
         post: '',
         redirectToHome: false,
-       // redirectToSignin: false,
+        redirectToSignin: false,
         like: false,
         likes: 0
     }
@@ -38,6 +38,12 @@ class SinglePost extends Component {
 
     // likeToggle function sends a PUT request to the backend when the like button is clicked.
     likeToggle = () => {
+        // If the user is not authenticated when they try to like a post then we want to send them to the signin page.
+        if (!isAuthenticated()) {
+            this.setState({ redirectToSignin: true })
+            return false // We return false so that the rest of the code isn't executed.
+        }
+
         // If the post is liked then when the user clicks, they unlike it, otherwise the user clicks and adds a like to the post.
         let callApi = this.state.like ? unlike : like
 
@@ -93,7 +99,24 @@ class SinglePost extends Component {
                     style={{ height: "300px", width: "100%", objectFit: 'cover' }}
                 />
 
-                <h3 onClick={this.likeToggle}>{likes} Like</h3>
+                {/* NEED TO FIX OR CHANGE: the button doesn't display the thumbs up symbol. */}
+                {like ? (
+                    <h5 onClick={this.likeToggle}>
+                        <i 
+                            className="fa fa-thumbs-up text-success bg-dark" 
+                            style={{ padding: '8px 19px', borderRadius: '50%' }}
+                        />{" "}
+                        {likes} Like
+                    </h5>
+                ) : (
+                    <h5 onClick={this.likeToggle}>
+                        <i 
+                            className="fa fa-thumbs-up text-warning bg-dark" 
+                            style={{ padding: '8px 19px', borderRadius: '50%' }}
+                        />{" "}
+                        {likes} Like
+                    </h5>
+                )}
 
                 <p className="card-text">{post.body}</p>
                 <br/>
@@ -114,10 +137,14 @@ class SinglePost extends Component {
         )
     }
     render() {
-        if (this.state.redirectToHome) {
+        const { post, redirectToHome, redirectToSignin } = this.state
+
+        if (redirectToHome) {
             return <Redirect to={`/`} />
+        } else if (redirectToSignin) {
+            return <Redirect to={`/signin`}/>
         }
-        const {post} = this.state
+
         return (
             <div className="container">
                 <h2 className="display-2 mt-5 mb-5">{post.title}</h2>
