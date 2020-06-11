@@ -3,6 +3,8 @@ import { Link, Redirect } from 'react-router-dom';
 import { singlePost, remove, like, unlike } from './apiPost'
 import DefaultPost from '../images/castle.jpg';
 import { isAuthenticated } from '../auth';
+import Comment from './Comment';
+
 
 class SinglePost extends Component {
     state = {
@@ -10,7 +12,8 @@ class SinglePost extends Component {
         redirectToHome: false,
         redirectToSignin: false,
         like: false,
-        likes: 0
+        likes: 0,
+        comments: []
     }
 
     // Function that prevents the user from liking the same post more than once.
@@ -30,10 +33,15 @@ class SinglePost extends Component {
                 this.setState({
                     post: data,
                     likes: data.likes.length,
-                    like: this.checkLike(data.likes)
+                    like: this.checkLike(data.likes),
+                    comments: data.comments
                 })
             }
         })
+    }
+
+    updateComments = comments => {
+        this.setState({ comments })
     }
 
     // likeToggle function sends a PUT request to the backend when the like button is clicked.
@@ -137,7 +145,7 @@ class SinglePost extends Component {
         )
     }
     render() {
-        const { post, redirectToHome, redirectToSignin } = this.state
+        const { post, redirectToHome, redirectToSignin, comments } = this.state
 
         if (redirectToHome) {
             return <Redirect to={`/`} />
@@ -148,10 +156,17 @@ class SinglePost extends Component {
         return (
             <div className="container">
                 <h2 className="display-2 mt-5 mb-5">{post.title}</h2>
+
                 {/* If loading is true then it displays loading..., else it returns the post */}
                 {!post ? <div className="jumbotron text-center">
                     <h6>Loading...</h6>
                 </div> : (this.renderPost(post))}
+
+                <Comment
+                    postId={post._id}
+                    comments={comments.reverse()}
+                    updateComments={this.updateComments}
+                />
             </div>
         )
     }
