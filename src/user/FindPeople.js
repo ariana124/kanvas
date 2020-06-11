@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { findPeople } from './apiUser';
 import DefaultProfile from '../images/profilepic.jpg';
 import { Link } from 'react-router-dom';
-import { isAuthenticated } from '../auth';
+import { isAuthenticaled, isAuthenticated } from '../auth';
 
 
 class FindPeople extends Component {
@@ -14,10 +14,7 @@ class FindPeople extends Component {
     }
 
     componentDidMount() {
-        const userId = isAuthenticated().user._id;
-        const token = isAuthenticated().token;
-
-        findPeople(userId, token).then(data => {
+        FindPeople().then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -61,4 +58,4 @@ class FindPeople extends Component {
     }
 }
 
-export default FindPeople;
+export default Users;
