@@ -10,8 +10,7 @@ const {
     addFollowing,
     addFollower,
     removeFollowing,
-    removeFollower,
-    findPeople
+    removeFollower
 } = require('../controllers/user')
 const {requireSignin} = require('../controllers/auth')
 
@@ -26,9 +25,6 @@ router.delete('/user/:userId', requireSignin, deleteUser)
 
 // Route to show user profile picture.
 router.get('/user/photo/:userId', userPhoto)
-
-// Who to follow recommendation
-router.get('/user/findpeople/:userId', requireSignin, findPeople);
 
 // Any routes containing :userId, our app will first execute userById()
 // adds profile object in req with user info
