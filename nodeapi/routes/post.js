@@ -1,11 +1,28 @@
 const express = require('express')
 const router = express.Router()
-const {getPosts, createPost, postbyUser, postById, isPoster, deletePost, updatePost, photo, singlePost} = require('../controllers/post')
+const {
+    getPosts,
+    createPost,
+    postbyUser,
+    postById,
+    isPoster,
+    deletePost,
+    updatePost,
+    photo,
+    singlePost,
+    like,
+    unlike
+} = require('../controllers/post')
 const {requireSignin} = require('../controllers/auth')
 const {userById} = require('../controllers/user')
 const {createPostValidator} = require('../validator')
 
 router.get('/posts', getPosts)
+
+// Like and unlike
+router.put('/post/like', requireSignin, like)
+router.put('/post/unlike', requireSignin, unlike)
+
 router.post('/post/new/:userId', requireSignin, createPost, createPostValidator)
 router.get('/post/:postId', singlePost)
 router.get('/posts/by/:userId', postbyUser)
