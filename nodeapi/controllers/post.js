@@ -6,6 +6,8 @@ const _ = require('lodash')
 exports.postById = (req, res, next, id) => {
   Post.findById(id)
   .populate('postedBy', '_id name')
+  .populate('comments', 'text created')
+  .populate('comments.postedBy', '_id name')
   .exec((err, post) => {
     if (err || !post) {
       return res.status(400).json({
@@ -20,6 +22,8 @@ exports.postById = (req, res, next, id) => {
 exports.getPosts = (req, res) => {
   const posts = Post.find()
   .populate('postedBy', '_id name')
+  .populate('comments', 'text created')
+  .populate('comments.postedBy', '_id name')
   .select('_id title body created likes')
   .sort({ created: -1 })
   .then((posts) => {
@@ -178,6 +182,46 @@ exports.unlike = (req, res) => {
   ).exec((err, result) => {
     if(err) {
       return res.status(400).json({ error: err})
+    } else {
+      res.json(result)
+    }
+  })
+}
+
+// Comment and uncomment
+exports.comment = (req, res) => {
+  let comment = req.body.comment
+  comment.postedBy = req.body.userId
+  // Finds the post by its id and updates it with the new comment.
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    {$push: { comments: comment }},
+    {new: true}
+  )
+  .populate('comments.postedBy', '_id name')
+  .populate('postedBy', '_id name')
+  .exec((err, result) => {
+    if(err) {
+      return res.status(400).json({ error: err })
+    } else {
+      res.json(result)
+    }
+  })
+}
+
+exports.uncomment = (req, res) => {
+  let comment = req.body.comment
+  // Finds the post by its id and updates it with the new comment.
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    {$pull: { comments: {_id: comment._id } }},
+    {new: true}
+  )
+  .populate('comments.postedBy', '_id name')
+  .populate('postedBy', '_id name')
+  .exec((err, result) => {
+    if(err) {
+      return res.status(400).json({ error: err })
     } else {
       res.json(result)
     }
