@@ -20,6 +20,7 @@ const MainRouter = () => (
         {/* This allows for switching between components when we navigate to different URLs. */}
         <Switch>
             <Route exact path="/" component={Home}/>
+            <PrivateRoute exact path="/post/create" component={NewPost}/>
             <Route exact path="/post/:postId" component={SinglePost}/>
             <PrivateRoute exact path="/post/edit/:postId" component={EditPost}/>
             <Route exact path="/users" component={Users}/>
@@ -28,7 +29,6 @@ const MainRouter = () => (
             {/* Now only logged in users can view other people's profiles or edit their own profile. */}
             <PrivateRoute exact path="/user/:userId" component={Profile}/>
             <PrivateRoute exact path="/user/edit/:userId" component={EditProfile}/>
-            <PrivateRoute exact path="/post/create" component={NewPost}/>
         </Switch>
     </div>
 )
