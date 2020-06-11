@@ -79,6 +79,7 @@ class ProfileTabs extends Component {
                     <div className="col-md-4">
                         <h3 className="text-primary">Posts</h3>
                         <hr />
+                        {JSON.stringify(posts)}
                     </div>
                 </div>
             </div> 
