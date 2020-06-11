@@ -47,13 +47,6 @@ const Menu = ({history}) => (
                         {/* We use the a tag because we're not trying to navigate the user to another component. */}
                         <span className="nav-link" style={(isActive(history, "/signup"), {cursor: "pointer"})} onClick={() => signout(() => history.push('/'))}>Sign Out</span>
                     </li>
-
-                    <li className="nav-item">
-                        <Link to={`/findpeople`} style={isActive(history, `/findpeople`)} className="nav-link">
-                            Find People
-                        </Link>
-                    </li>
-    
                     <li className="nav-item">
                         {/* This will display the user's username and go to their profile page when the username is clicked. */}
                         <Link to={`/user/${isAuthenticated().user._id}`} className="nav-link" style={isActive(history, `/user/${isAuthenticated().user._id}`)}>
