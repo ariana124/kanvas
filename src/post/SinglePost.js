@@ -13,6 +13,14 @@ class SinglePost extends Component {
         likes: 0
     }
 
+    // Function that prevents the user from liking the same post more than once.
+    checkLike = (likes) => {
+        const userId = isAuthenticated() && isAuthenticated().user._id
+        // indexOf looks for the user in the likes array and if the user is found then it's a match.
+        let match = likes.indexOf(userId) !== -1
+        return match; // Returns true or false.
+    }
+
     componentDidMount = () => {
         const postId = this.props.match.params.postId
         singlePost(postId).then(data => {
@@ -21,7 +29,8 @@ class SinglePost extends Component {
             } else {
                 this.setState({
                     post: data,
-                    likes: data.likes.length
+                    likes: data.likes.length,
+                    like: this.checkLike(data.likes)
                 })
             }
         })
