@@ -29,8 +29,8 @@ class NewPost extends Component {
     // DONE
     isValid = () => {
         const { title, body, fileSize } = this.state;
-        if (fileSize > 100000) {
-            this.setState({ error: "File size is too big, must be less than 100kb",
+        if (fileSize > 200000) {
+            this.setState({ error: "File size is too big, must be less than 200kb",
             loading: false
             });
             return false;
@@ -86,7 +86,7 @@ class NewPost extends Component {
     newPostForm = (title, body) => (
         <form>
             <div className="form-group">
-                <label className="text-muted">Profile Photo</label>
+                <label className="text-muted">Post Image</label>
                 <input onChange={this.handleChange("photo")} className="form-control" type="file" accept="image/*"/>
             </div>
             <div className="form-group">
