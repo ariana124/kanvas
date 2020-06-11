@@ -27,8 +27,8 @@ const MainRouter = () => (
             <Route exact path="/signup" component={Signup}/>
             <Route exact path="/signin" component={Signin}/>
             {/* Now only logged in users can view other people's profiles or edit their own profile. */}
-            <PrivateRoute exact path="/user/:userId" component={Profile}/>
             <PrivateRoute exact path="/user/edit/:userId" component={EditProfile}/>
+            <PrivateRoute exact path="/user/:userId" component={Profile}/>
         </Switch>
     </div>
 )
