@@ -48,7 +48,7 @@ class Comment extends Component {
                 if (data.error) {
                     console.log(data.error)
                 } else {
-                    this.setState({ text: ''})
+                    this.setState({ text: '' })
                     // Dispatch fresh list of comments to parent component (SinglePost)
                     this.props.updateComments(data.comments);
                 }
@@ -92,7 +92,7 @@ class Comment extends Component {
                             type="text"
                             value={this.state.text}
                             onChange={this.handleChange}
-                            placeholder="Leave a comment."
+                            placeholder="Comment here."
                         />
                     </div>
 
