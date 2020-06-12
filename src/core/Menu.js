@@ -22,7 +22,7 @@ const Menu = ({history}) => (
             {/* If the user is not authenticated then we only display the sign in and sign up components. */}
             {!isAuthenticated() && (
                 <> {/* This is a react fragment. */}
-                    <li className="nav-item">
+                   <li className="nav-item">
                         <Link className="nav-link" style={isActive(history, "/signin")} to="/signin">Sign In</Link>
                     </li>
                     <li className="nav-item">
@@ -43,10 +43,7 @@ const Menu = ({history}) => (
                             Create Post
                         </Link>
                     </li>
-                    <li className="nav-item">
-                        {/* We use the a tag because we're not trying to navigate the user to another component. */}
-                        <span className="nav-link" style={(isActive(history, "/signup"), {cursor: "pointer"})} onClick={() => signout(() => history.push('/'))}>Sign Out</span>
-                    </li>
+                    
                     <li className="nav-item">
                         <Link to={`/findpeople`} style={isActive(history, `/findpeople`)} className="nav-link">
                             Find People
@@ -58,11 +55,16 @@ const Menu = ({history}) => (
                             {`${isAuthenticated().user.name}'s profile`}
                         </Link>
                     </li>
+                    <li className="nav-item">
+                        {/* We use the a tag because we're not trying to navigate the user to another component. */}
+                        <span className="nav-link" style={(isActive(history, "/signup"), {cursor: "pointer"})} onClick={() => signout(() => history.push('/'))}>Sign Out</span>
+                    </li>
                 </>
             )}
         </ul>
     </div>
 );
+
 
 /* withRouter is a higher order component and all that means is it takes in another component as an argument.
    It will also give us access to props which in turn gives us access to the history object. */
