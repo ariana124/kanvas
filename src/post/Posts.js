@@ -39,7 +39,12 @@ class Posts extends Component {
                             style={{ height: "200px", width: "auto" }}
                         />
                         <h5 className="card-title">{post.title}</h5>
-                        <p className="card-text">{post.body.substring(0, 100)}</p>
+                        <p 
+                            className="card-text"
+                            style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap'}}
+                        >
+                            {post.body.substring(0, 100)}
+                        </p>
                         <br/>
                         <p className="font-italic mark">
                             Posted By <Link to={`${posterId}`}>{posterName}{" "}</Link>
