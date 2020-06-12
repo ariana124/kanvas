@@ -3,7 +3,7 @@ import { findPeople, follow } from './apiUser';
 import DefaultProfile from '../images/profilepic.jpg';
 import { Link } from 'react-router-dom';
 import { isAuthenticated } from '../auth';
-
+import '../styling/users.scss';
 
 class FindPeople extends Component {
     constructor() {
@@ -62,7 +62,7 @@ class FindPeople extends Component {
                     <div className="card-body">
                         <h5 className="card-title">{user.name}</h5>
                         <p className="card-text">The user's bio or short self intro would go here.</p>
-                        <Link to={`/user/${user._id}`} className="btn btn-raised btn-sm btn-primary">View Profile</Link>
+                        <Link to={`/user/${user._id}`} className="viewProfileBtn">View Profile</Link>
                     </div>
                 </div>
             ))}
