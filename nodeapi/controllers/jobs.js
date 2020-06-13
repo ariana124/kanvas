@@ -1,7 +1,8 @@
 const axios = require('axios');
 
 exports.getJobs = (req, res) => {
-    axios.get('https://jobs.github.com/positions.json?description=python&location=new+york')
+    const {searchterm, place} = req.body
+    axios.get(`https://jobs.github.com/positions.json?description=${searchterm}&location=${place}`)
     .then(response => {
         res.json(response.data)
     })
