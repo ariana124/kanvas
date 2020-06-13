@@ -114,7 +114,7 @@ class SinglePost extends Component {
                     <h5 onClick={this.likeToggle}>
                         <img 
                             src={`${LikeFilled}`}
-                            style={{ height: '35px', width: 'auto' }}
+                            style={{ height: '35px', width: 'auto', cursor: 'pointer' }}
                         />{" "}
                         {likes} Like
                     </h5>
@@ -122,7 +122,7 @@ class SinglePost extends Component {
                     <h5 onClick={this.likeToggle}>
                         <img 
                             src={`${LikeOutline}`}
-                            style={{ height: '35px', width: 'auto' }}
+                            style={{ height: '35px', width: 'auto', cursor: 'pointer' }}
                         />{" "}
                         {likes} Like
                     </h5>
