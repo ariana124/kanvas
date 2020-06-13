@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { list } from './apiPost';
 import DefaultPost from '../images/castle.jpg';
-
+import '../styling/users.scss';
 
 class Posts extends Component {
     constructor() {
@@ -39,13 +39,18 @@ class Posts extends Component {
                             style={{ height: "200px", width: "auto" }}
                         />
                         <h5 className="card-title">{post.title}</h5>
-                        <p className="card-text">{post.body.substring(0, 100)}</p>
+                        <p 
+                            className="card-text"
+                            style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap'}}
+                        >
+                            {post.body.substring(0, 100)}
+                        </p>
                         <br/>
                         <p className="font-italic mark">
                             Posted By <Link to={`${posterId}`}>{posterName}{" "}</Link>
                             on {new Date(post.created).toDateString()}
                         </p>
-                        <Link to={`/post/${post._id}`} className="btn btn-raised btn-sm btn-primary">Read more</Link>
+                        <Link to={`/post/${post._id}`} className="viewProfileBtn">Read more</Link>
                     </div>
                 </div>
                 )
