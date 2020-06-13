@@ -39,7 +39,7 @@ class Users extends Component {
                     />
                     <div className="card-body">
                         <h5 className="card-title">{user.name}</h5>
-                        <p className="card-text">The user's bio or short self intro would go here.</p>
+                    {/*   <p className="card-text">The user's bio or short self intro would go here.</p> */}
                         <Link to={`/user/${user._id}`} className="viewProfileBtn">View Profile</Link>
                     </div>
                 </div>
