@@ -1,9 +1,8 @@
 export const getJobs = () => {
   return (
-    fetch(`https://jobs.github.com/positions.json?description=python&location=new+york`, {
+    fetch(`${process.env.REACT_APP_API_URL}/jobs`, {
       method: "GET",
       headers: {
-        Accept: "application/json",
         "Content-type": "application/json",
       },
     })
