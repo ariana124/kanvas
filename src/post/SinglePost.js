@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { singlePost, remove, like, unlike } from './apiPost'
 import DefaultPost from '../images/castle.jpg';
+import LikeFilled from '../images/like-filled.png';
+import LikeOutline from '../images/like-outline.png';
 import { isAuthenticated } from '../auth';
 import Comment from './Comment';
 
@@ -110,17 +112,17 @@ class SinglePost extends Component {
                 {/* NEED TO FIX OR CHANGE: the button doesn't display the thumbs up symbol. */}
                 {like ? (
                     <h5 onClick={this.likeToggle}>
-                        <i 
-                            className="fa fa-thumbs-up text-success bg-dark" 
-                            style={{ padding: '8px 19px', borderRadius: '50%' }}
+                        <img 
+                            src={`${LikeFilled}`}
+                            style={{ height: '35px', width: 'auto' }}
                         />{" "}
                         {likes} Like
                     </h5>
                 ) : (
                     <h5 onClick={this.likeToggle}>
-                        <i 
-                            className="fa fa-thumbs-up text-warning bg-dark" 
-                            style={{ padding: '8px 19px', borderRadius: '50%' }}
+                        <img 
+                            src={`${LikeOutline}`}
+                            style={{ height: '35px', width: 'auto' }}
                         />{" "}
                         {likes} Like
                     </h5>
