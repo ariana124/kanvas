@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { list } from './apiUser';
+import { findPeople, follow } from './apiUser';
 import DefaultProfile from '../images/profilepic.jpg';
+import { Link } from 'react-router-dom';
+import { isAuthenticated } from '../auth';
 import '../styling/users.scss';
 
 
-class Users extends Component {
+class FindPeople extends Component {
     constructor() {
         super()
         this.state = {
@@ -14,14 +15,36 @@ class Users extends Component {
     }
 
     componentDidMount() {
-        list().then(data => {
+        const userId = isAuthenticated().user._id;
+        const token = isAuthenticated().token;
+
+        findPeople(userId, token).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
                 this.setState({ users: data });
             }
-        })
+        });
     }
+
+    clickFollow = (user, i) => {
+        const userId = isAuthenticated().user._id;
+        const token = isAuthenticated().token;
+
+        follow(userId, token, user._id).then(data => {
+            if (data.error) {
+                this.setState({ error: data.error });
+            } else {
+                let toFollow = this.state.users;
+                toFollow.splice(i, 1);
+                this.setState({
+                    users: toFollow,
+                    open: true,
+                    followMessage: `Following ${user.name}`
+                });
+            }
+        });
+    };
 
     renderUsers = (users) => (
         <div className="row">
@@ -39,7 +62,7 @@ class Users extends Component {
                     />
                     <div className="card-body">
                         <h5 className="card-title">{user.name}</h5>
-                    {/*   <p className="card-text">The user's bio or short self intro would go here.</p> */}
+                    {/*    <p className="card-text">The user's bio or short self intro would go here.</p>  */}
                         <Link to={`/user/${user._id}`} className="viewProfileBtn">View Profile</Link>
                     </div>
                 </div>
@@ -51,11 +74,11 @@ class Users extends Component {
         const {users} = this.state;
         return (
             <div className="container">
-                <h2 className="mt-5 mb-5">Users</h2>
+                <h2 className="mt-5 mb-5">Find People</h2>
                 {this.renderUsers(users)}
             </div>
         )
     }
 }
 
-export default Users;
+export default FindPeople;

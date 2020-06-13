@@ -1,0 +1,54 @@
+@import './variables';
+
+.viewProfileBtn {
+    border-radius: 5px;
+    border: 1px solid $primaryBlue;
+    color: $primaryBlue;
+    box-shadow: none;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 13px;
+
+    &:hover {
+        cursor: pointer;
+        background-image: $blueGradient;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+    }
+}
+
+.editProfileBtn {
+    border-radius: 5px;
+    background-color: $yellowGradient;
+    color: #fff;
+    box-shadow: none;
+    padding: 12px;
+    text-transform: uppercase;
+    font-size: 13px;
+
+    &:hover {
+        cursor: pointer;
+        background-image: $yellowGradient;
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.deleteProfileBtn {
+    border-radius: 5px;
+    background-color: $redGradient;
+    color: #fff;
+    box-shadow: none;
+    padding: 12px;
+    text-transform: uppercase;
+    font-size: 13px;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #e90f00;
+        color: #fff;
+        text-decoration: none;
+    }
+}
