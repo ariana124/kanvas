@@ -26,10 +26,7 @@ class ProfileTabs extends Component {
                                 <div>
                                     <Link to={`/user/${person._id}`}>
                                         <img
-                                            style={{
-                                                borderRadius: "50%",
-                                                border: "1px solid black"
-                                            }}
+                                            style={{ borderRadius: "50%" }}
                                             className="float-left mr-2"
                                             height="30px"
                                             width="30px"
@@ -55,10 +52,7 @@ class ProfileTabs extends Component {
                                     <div>
                                         <Link to={`/user/${person._id}`}>
                                             <img
-                                                style={{
-                                                    borderRadius: "50%",
-                                                    border: "1px solid black"
-                                                }}
+                                                style={{ borderRadius: "50%" }}
                                                 className="float-left mr-2"
                                                 height="30px"
                                                 width="30px"

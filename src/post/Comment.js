@@ -104,16 +104,13 @@ class Comment extends Component {
                 </div>
 
                 <div className="col-md-12">
-                    <h3 className="text-primary">{comments.length} Comments</h3>
+                    <h3 style={{ color: '#333'}}>{comments.length} Comments</h3>
                     <hr />
                     {comments.map((comment, i) => (
                         <div key={i}>
                             <Link to={`/user/${comment.postedBy._id}`}>
                                 <img
-                                    style={{
-                                        borderRadius: "50%",
-                                        border: "1px solid black"
-                                    }}
+                                    style={{ borderRadius: "50%" }}
                                     className="float-left mr-2"
                                     height="30px"
                                     width="30px"
