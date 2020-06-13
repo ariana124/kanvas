@@ -36,6 +36,7 @@ app.use(cors())
 const postRoutes = require('./routes/post')
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
+const jobsRoutes = require('./routes/jobs')
 
 // Database
 mongoose.connect(process.env.MONGO_URI, 
@@ -63,6 +64,7 @@ app.get('/', (req, res) => {
 app.use('/', postRoutes)
 app.use('/', authRoutes)
 app.use('/', userRoutes)
+app.use('/', jobsRoutes)
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
     res.status(401).json({error: "Unauthorized"});
