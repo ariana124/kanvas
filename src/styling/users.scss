@@ -1,0 +1,21 @@
+@import './buttons';
+
+.img-thumbnail {
+    border: none;
+    box-shadow: none;
+    height: 350px;
+    width: auto;
+}
+
+.card {
+    border: none;
+    box-shadow: none;
+}
+
+.card-body {
+    padding: 10px 20px 25px;
+}
+
+.card-title {
+    padding-bottom: 10px;
+}
