@@ -2,9 +2,8 @@
 
 .viewProfileBtn {
     border-radius: 5px;
-    // background-image: $blueGradient;
-    border: 1px solid #0854dd;
-    color: #0854dd;
+    border: 1px solid $primaryBlue;
+    color: $primaryBlue;
     box-shadow: none;
     padding: 10px;
     text-transform: uppercase;
@@ -30,7 +29,7 @@
 
     &:hover {
         cursor: pointer;
-        background-image: $yellowGradientOnHover;
+        background-image: $yellowGradient;
         color: #fff;
         text-decoration: none;
     }
