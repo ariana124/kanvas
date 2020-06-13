@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {getJobs} from './apiJobs'
 import {TextField} from '@material-ui/core'
 
 class Jobs extends Component {
@@ -30,11 +31,12 @@ class Jobs extends Component {
         //         })
         //     }
         // });
-
         console.log(`Search Term: `, search_term);
         console.log(`Search Term: `, place);
 
-
+        getJobs().then(data => {
+                console.log(`Jobs: `, data)
+        }).catch(() => console.log(`Error: retrieving jobs`));
     };
 
     render() {
