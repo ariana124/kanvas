@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { signout, isAuthenticated } from '../auth';
+import '../styling/menu.scss';
+
 
 // If the history and pathname match then it will change the color of the link to inidicate that it's active. 
 const isActive = (history, path) => {
     if (history.location.pathname === path) return { color: "#000", fontWeight: '600' };
-        else return { color: "#707070" };
+        else return { color: "#333333" };
 }
 
 // This is a functional component, not a class component since it doesn't need to have a state.
@@ -13,9 +15,6 @@ const Menu = ({history}) => (
     <div>
         {/* <Link> will render the components dynamically as opposed to <a href> tag which reloads the entire page. */}
         <ul className="nav nav-tabs bg-light">
-            <li className="navbar-brand">
-                <img src="../images/palette.png"/>
-            </li>
             <li className="nav-item">
                 <Link className="nav-link" style={isActive(history, "/")} to="/">Home</Link>
             </li>
@@ -62,7 +61,7 @@ const Menu = ({history}) => (
                         {/* We use the a tag because we're not trying to navigate the user to another component. */}
                         <span 
                             className="nav-link" 
-                            style={(isActive(history, "/signup"), {cursor: "pointer"}, {color: '#707070'})} 
+                            style={(isActive(history, "/signup"), {cursor: "pointer"}, {color: '#333333'})} 
                             onClick={() => signout(() => history.push('/'))}
                         >
                             Sign Out
