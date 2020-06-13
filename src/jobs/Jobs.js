@@ -21,20 +21,10 @@ class Jobs extends Component {
         event.preventDefault()
         const { search_term, place } = this.state;
 
-        // signin(user).then(data => {
-        //     if (data.error) {
-        //         this.setState({error: data.error, loading: false})
-        //     } else {
-        //         // Authenticates the user and redirect user to another page.
-        //         authenticate(data, () => {
-        //             this.setState({redirectToReferer: true})
-        //         })
-        //     }
-        // });
         console.log(`Search Term: `, search_term);
         console.log(`Search Term: `, place);
 
-        getJobs().then(data => {
+        getJobs(search_term, place).then(data => {
                 console.log(`Jobs: `, data)
         }).catch(() => console.log(`Error: retrieving jobs`));
     };
@@ -48,11 +38,11 @@ class Jobs extends Component {
                     <h2 className="mt-5 mb-5">Find Jobs</h2>
                     <div className="form-group">
                         <label className="text-muted">Search Term</label>
-                        <input onChange={this.handleChange("search_term")} className="form-control" type="text" value={search_term}/>
+                        <input onChange={this.handleChange("search_term")} className="form-control" type="text" value={search_term} placeholder="JavaScript"/>
                     </div>
                     <div className="form-group">
                         <label className="text-muted">Place</label>
-                        <input onChange={this.handleChange("place")} className="form-control" type="text" value={place}/>
+                        <input onChange={this.handleChange("place")} className="form-control" type="text" value={place} placeholder="San Francisco"/>
                     </div>
                     <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">Search Jobs</button>
                 </form>
