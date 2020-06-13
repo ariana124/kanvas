@@ -20,4 +20,8 @@
 
 a {
     color: $primaryBlue;
+
+    &:hover {
+        text-decoration: none;
+    }
 }
