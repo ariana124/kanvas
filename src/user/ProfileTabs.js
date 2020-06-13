@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DefaultProfile from "../images/profilepic.jpg";
+import '../styling/followtabs.scss';
+
 
 // With each user, a list of their followers and the 
 // users they are following wil be added
@@ -17,9 +19,7 @@ class ProfileTabs extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-4">
-                        <h3 className="text-primary">
-                            {followers.length} Followers
-                            </h3>
+                        <h3>{followers.length} Followers</h3>
                         <hr />
                         {followers.map((person, i) => (
                             <div key={i}>
@@ -47,8 +47,7 @@ class ProfileTabs extends Component {
                     </div>
 
                     <div className="col-md-4">
-                        <h3 className="text-primary">
-                            {following.length} Following</h3>
+                        <h3>{following.length} Following</h3>
                         <hr />
                         {following.map((person, i) =>
                             (
@@ -77,7 +76,7 @@ class ProfileTabs extends Component {
                     </div>
                     
                     <div className="col-md-4">
-                        <h3 className="text-primary">{posts.length} Posts</h3>
+                        <h3>{posts.length} Posts</h3>
                         <hr />
                         {posts.map((post, i) => (
                             <div key={i}>
