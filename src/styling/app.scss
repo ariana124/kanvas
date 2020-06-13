@@ -1,0 +1,23 @@
+@import './variables';
+
+// @font-face {
+//     font-family: rubik;
+//     src: url(./fonts/rubik/rubik-regular.woff2);
+// }
+
+// * {
+//     font-family: rubik, Roboto, Arial, Helvetica, sans-serif;
+// }
+
+@font-face {
+    font-family: metro;
+    src: url(./fonts/metropolis/Metropolis-Regular.woff2);
+}
+
+* {
+    font-family: metro, Roboto, Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: $primaryBlue;
+}
