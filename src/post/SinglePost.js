@@ -110,19 +110,20 @@ class SinglePost extends Component {
                     style={{ height: "300px", width: "100%", objectFit: 'cover' }}
                 />
 
-                {/* NEED TO FIX OR CHANGE: the button doesn't display the thumbs up symbol. */}
                 {like ? (
-                    <h5 onClick={this.likeToggle}>
+                    <h5>
                         <img 
                             src={`${LikeFilled}`}
+                            onClick={this.likeToggle}
                             style={{ height: '35px', width: 'auto', cursor: 'pointer' }}
                         />{" "}
                         {likes} Like
                     </h5>
                 ) : (
-                    <h5 onClick={this.likeToggle}>
+                    <h5>
                         <img 
                             src={`${LikeOutline}`}
+                            onClick={this.likeToggle}
                             style={{ height: '35px', width: 'auto', cursor: 'pointer' }}
                         />{" "}
                         {likes} Like
