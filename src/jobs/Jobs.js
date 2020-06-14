@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {getJobs} from './apiJobs'
 import JobList from './JobList'
+import "../styling/profile.scss"
 
 class Jobs extends Component {
     constructor() {
@@ -57,7 +58,7 @@ class Jobs extends Component {
                         <label className="text-muted">Place</label>
                         <input onChange={this.handleChange("place")} className="form-control" type="text" value={place} placeholder="San Francisco"/>
                     </div>
-                    <button onClick={this.displayJobs} className="btn btn-raised btn-primary">Search Jobs</button>
+                    <button onClick={this.displayJobs} className="followBtn">Search Jobs</button>
                 </form>
                 <div>
                     {jobs}
