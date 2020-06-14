@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {getJobs} from './apiJobs'
+import JobList from './JobList'
 
 class Jobs extends Component {
     constructor() {
@@ -7,29 +8,42 @@ class Jobs extends Component {
         this.state = {
             search_term: '',
             place: '',
+            jobs: [],
+            displayJobs: false
         };
+    }
+
+    displayJobs = event => {
+        event.preventDefault()
+        this.setState({
+            // Toggles displayJobs' state to true
+            displayJobs: true
+        })
+        const { search_term, place } = this.state;
+        getJobs(search_term, place).then(data => {
+                this.setState({jobs: data})
+                console.log(`Jobs: `, this.state.jobs)
+        }).catch(() => console.log(`Error: retrieving jobs`));
     }
 
     handleChange = name => event => {
         this.setState({ [name]: event.target.value });
     };
 
-
-    clickSubmit = event => {
-        // By default when the user clicks the submit button the page refreshes so that's why we're disabling it.
-        event.preventDefault()
-        const { search_term, place } = this.state;
-
-        console.log(`Search Term: `, search_term);
-        console.log(`Search Term: `, place);
-
-        getJobs(search_term, place).then(data => {
-                console.log(`Jobs: `, data)
-        }).catch(() => console.log(`Error: retrieving jobs`));
-    };
-
     render() {
+        let jobs = null;
         const {search_term, place} = this.state;
+
+        if ( this.state.displayJobs ) {
+            jobs = (
+            <ul class="list-group bmd-list-group-sm">
+                {this.state.jobs.map((job, index) => {
+                    return <JobList key={index}
+                    job={job} />
+                })}
+            </ul>
+            )
+        }
 
         return (
             <div className="container">
@@ -43,8 +57,11 @@ class Jobs extends Component {
                         <label className="text-muted">Place</label>
                         <input onChange={this.handleChange("place")} className="form-control" type="text" value={place} placeholder="San Francisco"/>
                     </div>
-                    <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">Search Jobs</button>
+                    <button onClick={this.displayJobs} className="btn btn-raised btn-primary">Search Jobs</button>
                 </form>
+                <div>
+                    {jobs}
+                </div>
             </div>
         )
     }
