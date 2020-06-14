@@ -12,7 +12,7 @@ import NewPost from './post/NewPost';
 import EditPost from './post/EditPost';
 import SinglePost from './post/SinglePost';
 import PrivateRoute from './auth/PrivateRoute';
-
+import Jobs from './jobs/Jobs';
 
 
 const MainRouter = () => (
@@ -25,6 +25,7 @@ const MainRouter = () => (
             <Route exact path="/post/:postId" component={SinglePost}/>
             <PrivateRoute exact path="/post/edit/:postId" component={EditPost}/>
             <Route exact path="/users" component={Users}/>
+            <Route exact path="/find/jobs" component={Jobs}/>
             <Route exact path="/signup" component={Signup}/>
             <Route exact path="/signin" component={Signin}/>
             {/* Now only logged in users can view other people's profiles or edit their own profile. */}

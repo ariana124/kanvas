@@ -21,6 +21,9 @@ const Menu = ({history}) => (
             <li className="nav-item">
                 <Link className="nav-link" style={isActive(history, "/users")} to="/users">Users</Link>
             </li>
+            <li className="nav-item">
+                <Link className="nav-link" style={isActive(history, "/find/jobs")} to="/find/jobs">Jobs</Link>
+            </li>
             {/* If the user is not authenticated then we only display the sign in and sign up components. */}
             {!isAuthenticated() && (
                 <> {/* This is a react fragment. */}
