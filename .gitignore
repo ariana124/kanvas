@@ -23,4 +23,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/src/styling
+#might have to remove to use fonts
+/src/styling/fonts
