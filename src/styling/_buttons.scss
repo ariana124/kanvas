@@ -111,3 +111,59 @@
         border: none;
     }
 }
+
+.backToPostsBtn {
+    border-radius: 5px;
+    border: 1px solid $primaryBlue;
+    background-color: #fff;
+    color: $primaryBlue;
+    box-shadow: none;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 13px;
+
+    &:hover {
+        cursor: pointer;
+        background-image: $blueGradient;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+    }
+}
+
+.updatePostBtn {
+    border-radius: 5px;
+    border: 1px solid orange;
+    color: orange;
+    box-shadow: none;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 13px;
+
+    &:hover {
+        cursor: pointer;
+        background-image: $yellowGradient;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+    }
+}
+
+.postBtn {
+    border-radius: 5px;
+    border: 1px solid #01b807;
+    background-color: #fff;
+    color: #01b807;
+    box-shadow: none;
+    padding: 8px 10px;
+    text-transform: uppercase;
+    font-size: 13px;
+
+    &:hover {
+        cursor: pointer;
+        background-image: $greenGradient;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+    }
+}

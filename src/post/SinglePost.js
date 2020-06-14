@@ -6,6 +6,7 @@ import LikeFilled from '../images/like-filled.png';
 import LikeOutline from '../images/like-outline.png';
 import { isAuthenticated } from '../auth';
 import Comment from './Comment';
+import '../styling/profile.scss';
 
 
 class SinglePost extends Component {
@@ -135,11 +136,11 @@ class SinglePost extends Component {
                     on {new Date(post.created).toDateString()}
                 </p>
                 <div className="d-inline-block">
-                    <Link to={`/`} className="btn btn-raised btn-sm btn-primary mr-5">Back to Posts</Link>
+                    <Link to={`/`} className="backToPostsBtn mr-4">Back to Posts</Link>
                     {isAuthenticated().user && isAuthenticated().user._id === post.postedBy._id &&
                     <>
-                        <Link to={`/post/edit/${post._id}`} className="btn btn-raised btn-sm btn-warning mr-5">Update Post</Link>
-                        <button onClick={this.deleteConfirmed} className="btn btn-raised btn-danger mr-5">Delete Post</button>
+                        <Link to={`/post/edit/${post._id}`} className="updatePostBtn mr-4">Update Post</Link>
+                        <button onClick={this.deleteConfirmed} className="deleteProfileBtn mr-4">Delete Post</button>
                     </>
                     }
                 </div>
