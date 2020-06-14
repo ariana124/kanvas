@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { signup } from '../auth';
+import '../styling/profile.scss';
 
 
 class Signup extends Component {
@@ -59,7 +60,7 @@ class Signup extends Component {
                 <label className="text-muted">Password</label>
                 <input onChange={this.handleChange("password")} className="form-control" type="password" value={password}/>
             </div>
-            <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">Submit</button>
+            <button onClick={this.clickSubmit} className="postBtn">Submit</button>
         </form> 
     )
 

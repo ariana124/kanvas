@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { signin, authenticate } from '../auth';
+import '../styling/profile.scss';
+
 
 class Signin extends Component {
     // Local state will hold user input such as email, password, etc.
@@ -54,7 +56,7 @@ class Signin extends Component {
                 <label className="text-muted">Password</label>
                 <input onChange={this.handleChange("password")} className="form-control" type="password" value={password}/>
             </div>
-            <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">Submit</button>
+            <button onClick={this.clickSubmit} className="createPostBtn">Submit</button>
         </form> 
     )
 
