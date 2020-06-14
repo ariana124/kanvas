@@ -3,6 +3,8 @@ import { comment, uncomment } from './apiPost';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
 import DefaultProfile from '../images/profilepic.jpg';
+import Trash from '../images/trash.png';
+import '../styling/profile.scss';
 
 
 class Comment extends Component {
@@ -96,7 +98,7 @@ class Comment extends Component {
                         />
                     </div>
 
-                    <button className="btn btn-raised btn-success mt-2">Post</button>
+                    <button className="postBtn mt-2">Post</button>
                 </form>
 
                 <div className="alert alert-danger" style={{ display: error ? "" : "none" }}>
@@ -132,13 +134,17 @@ class Comment extends Component {
                                         <span>
                                             {isAuthenticated().user && isAuthenticated().user._id === comment.postedBy._id && (
                                                     <>
-                                                        <span 
-                                                            className="text-danger float-right mr-1"
+                                                        <img 
+                                                            src={`${Trash}`}
+                                                            className="text-danger float-right mr-1.5"
                                                             onClick={() => this.deleteConfirmed(comment)}
-                                                            style={{ cursor: 'pointer' }}
-                                                        >
-                                                            Remove
-                                                        </span>
+                                                            style={{ 
+                                                                cursor: 'pointer',
+                                                                height: '26px',
+                                                                width: '25px',
+                                                                paddingBottom: '2.5px'
+                                                            }}
+                                                        />
                                                     </>
                                                 )}
                                         </span>
