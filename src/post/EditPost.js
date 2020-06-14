@@ -3,6 +3,8 @@ import {singlePost, update} from './apiPost'
 import {isAuthenticated} from '../auth'
 import { Redirect } from 'react-router-dom';
 import DefaultPost from '../images/altpic.jpg';
+import '../styling/profile.scss';
+
 
 class EditPost extends Component {
     constructor() {
@@ -108,7 +110,7 @@ class EditPost extends Component {
                 <label className="text-muted">Body</label>
                 <textarea onChange={this.handleChange("body")} type="text" className="form-control" value={body}/>
             </div>
-            <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">Update Post</button>
+            <button onClick={this.clickSubmit} className="postBtn">Update Post</button>
         </form> 
     )
 
