@@ -3,6 +3,7 @@ import { isAuthenticated } from '../auth';
 import { create } from './apiPost';
 import { Redirect } from 'react-router-dom';
 import DefaultProfile from '../images/profilepic.jpg';
+import '../styling/profile.scss';
 
 
 class NewPost extends Component {
@@ -97,7 +98,7 @@ class NewPost extends Component {
                 <label className="text-muted">Body</label>
                 <textarea onChange={this.handleChange("body")} type="text" className="form-control" value={body}/>
             </div>
-            <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">Create Post</button>
+            <button onClick={this.clickSubmit} className="createPostBtn">Create Post</button>
         </form> 
     )
 

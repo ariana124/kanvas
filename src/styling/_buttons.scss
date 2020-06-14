@@ -20,10 +20,10 @@
 
 .editProfileBtn {
     border-radius: 5px;
-    background-color: $yellowGradient;
-    color: #fff;
+    border: 1px solid orange;
+    color: orange;
     box-shadow: none;
-    padding: 12px;
+    padding: 10px;
     text-transform: uppercase;
     font-size: 13px;
 
@@ -32,23 +32,82 @@
         background-image: $yellowGradient;
         color: #fff;
         text-decoration: none;
+        border: none;
     }
 }
 
 .deleteProfileBtn {
     border-radius: 5px;
-    background-color: $redGradient;
-    color: #fff;
+    border: 1px solid red;
+    background-color: #fff;
+    color: red;
     box-shadow: none;
-    padding: 12px;
+    padding: 7px;
     text-transform: uppercase;
     font-size: 13px;
-    border: none;
 
     &:hover {
         cursor: pointer;
-        background-color: #e90f00;
+        background-image: $redGradient;
         color: #fff;
         text-decoration: none;
+        border: none;
+    }
+}
+
+.createPostBtn {
+    border-radius: 5px;
+    border: 1px solid $primaryBlue;
+    background-color: #fff;
+    color: $primaryBlue;
+    box-shadow: none;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 13px;
+
+    &:hover {
+        cursor: pointer;
+        background-image: $blueGradient;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+    }
+}
+
+.followBtn {
+    border-radius: 5px;
+    border: 1px solid #01b807;
+    background-color: #fff;
+    color: #01b807;
+    box-shadow: none;
+    padding: 9px;
+    text-transform: uppercase;
+    font-size: 13px;
+
+    &:hover {
+        cursor: pointer;
+        background-image: $greenGradient;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+    }
+}
+
+.unfollowBtn {
+    border-radius: 5px;
+    border: 1px solid #ff6d00;
+    background-color: #fff;
+    color: #ff6d00;
+    box-shadow: none;
+    padding: 9px;
+    text-transform: uppercase;
+    font-size: 13px;
+
+    &:hover {
+        cursor: pointer;
+        background-image: $orangeGradient;
+        color: #fff;
+        text-decoration: none;
+        border: none;
     }
 }
