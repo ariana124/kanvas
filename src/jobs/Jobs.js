@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {getJobs} from './apiJobs'
-import {TextField} from '@material-ui/core'
 
 class Jobs extends Component {
     constructor() {
