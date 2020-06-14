@@ -3,7 +3,7 @@ import { isAuthenticated } from '../auth';
 import { read, update, updateUser } from './apiUser';
 import { Redirect } from 'react-router-dom';
 import DefaultProfile from '../images/profilepic.jpg';
-
+import '../styling/profile.scss';
 
 
 class EditProfile extends Component {
@@ -130,7 +130,7 @@ class EditProfile extends Component {
                 <label className="text-muted">Password</label>
                 <input onChange={this.handleChange("password")} className="form-control" type="password" value={password}/>
             </div>
-            <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">Update</button>
+            <button onClick={this.clickSubmit} className="postBtn">Update</button>
         </form> 
     )
 
