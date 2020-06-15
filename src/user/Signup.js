@@ -80,10 +80,6 @@ class Signup extends Component {
                 {/* This div will display error messages if there are issues when the user is signing up. */}
                 <div className="alert alert-danger" style={{ display: error ? "" :" none" }}>{error}</div>
 
-                <div className="alert alert-info" style={{ display: open ? "" :" none" }}>
-                    New account is successfully created. Please sign in.
-                </div>
-
                 {this.signupForm(name, email, password)}
             </div>
         );
