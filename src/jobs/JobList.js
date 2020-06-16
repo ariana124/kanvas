@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import '../styling/jobList.scss';
+import '../styling/profile.scss';
+
 
 export default class JobList extends Component {
     render() {
