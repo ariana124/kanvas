@@ -13,7 +13,7 @@ export default class JobList extends Component {
                         <p class="list-group-item-text">Location: {this.props.job.location}</p>
                     </div>
                     </a>
-                    <a className="jobInfo mt-3 ml-5" href={this.props.job.url} target="_blank">Learn More</a>
+                    <a className="jobInfo mt-3" href={this.props.job.url} target="_blank">Learn More</a>
                 </div>
         )
     }
