@@ -5,7 +5,7 @@ export default class JobList extends Component {
     render() {
         return (
                 <div className="row">
-                    <a class="list-group-item col">
+                    <a class="list-group-item col-10">
                     <div class="bmd-list-group-col">
                         <p class="list-group-item-heading">{this.props.job.title}</p>
                         <p class="list-group-item-text">Company: {this.props.job.company}</p>
@@ -13,7 +13,7 @@ export default class JobList extends Component {
                         <p class="list-group-item-text">Location: {this.props.job.location}</p>
                     </div>
                     </a>
-                    <a className="job_info" href={this.props.job.url} target="_blank">Learn More</a>
+                    <a className="jobInfo mt-3 ml-5" href={this.props.job.url} target="_blank">Learn More</a>
                 </div>
         )
     }
