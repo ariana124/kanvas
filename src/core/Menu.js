@@ -14,7 +14,7 @@ const isActive = (history, path) => {
 const Menu = ({history}) => (
     <div>
         {/* <Link> will render the components dynamically as opposed to <a href> tag which reloads the entire page. */}
-        <ul className="nav nav-tabs bg-light">
+        <ul className="nav nav-tabs bg-light justify-content-end pr-2">
             <li className="nav-item">
                 <Link className="nav-link" style={isActive(history, "/")} to="/">Home</Link>
             </li>
