@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { list } from './apiPost';
 import DefaultPost from '../images/castle.jpg';
-import '../styling/users.scss';
+
 
 class Posts extends Component {
     constructor() {

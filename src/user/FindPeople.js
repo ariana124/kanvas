@@ -3,7 +3,6 @@ import { findPeople, follow } from './apiUser';
 import DefaultProfile from '../images/profilepic.png';
 import { Link } from 'react-router-dom';
 import { isAuthenticated } from '../auth';
-import '../styling/users.scss';
 
 
 class FindPeople extends Component {

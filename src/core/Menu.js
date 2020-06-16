@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { signout, isAuthenticated } from '../auth';
-import '../styling/app.scss';
 
 
 // If the history and pathname match then it will change the color of the link to inidicate that it's active. 
