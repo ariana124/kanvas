@@ -3,7 +3,6 @@ import {singlePost, update} from './apiPost'
 import {isAuthenticated} from '../auth'
 import { Redirect } from 'react-router-dom';
 import DefaultPost from '../images/altpic.jpg';
-import '../styling/profile.scss';
 
 
 class EditPost extends Component {

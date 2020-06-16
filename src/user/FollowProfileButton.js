@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { follow, unfollow } from "./apiUser";
-import '../styling/profile.scss';
 
 
 class FollowProfileButton extends Component {

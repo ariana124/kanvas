@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import {getJobs} from './apiJobs'
-import JobList from './JobList'
-import "../styling/profile.scss"
+import React, { Component } from 'react';
+import {getJobs} from './apiJobs';
+import JobList from './JobList';
+
 
 class Jobs extends Component {
     constructor() {

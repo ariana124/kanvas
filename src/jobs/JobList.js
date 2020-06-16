@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '../styling/profile.scss';
 
 
 export default class JobList extends Component {

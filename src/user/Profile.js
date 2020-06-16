@@ -7,7 +7,6 @@ import DeleteUser from "./DeleteUser";
 import FollowProfileButton from "./FollowProfileButton";
 import ProfileTabs from './ProfileTabs'
 import { listByUser } from '../post/apiPost';
-import '../styling/profile.scss';
 
 
 class Profile extends Component {

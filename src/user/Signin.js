@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { signin, authenticate } from '../auth';
-import '../styling/profile.scss';
 
 
 class Signin extends Component {

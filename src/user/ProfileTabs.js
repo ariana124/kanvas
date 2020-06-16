@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DefaultProfile from "../images/profilepic.png";
-import '../styling/profile.scss';
 
 
 // With each user, a list of their followers and the 

@@ -3,7 +3,6 @@ import { isAuthenticated } from '../auth';
 import { create } from './apiPost';
 import { Redirect } from 'react-router-dom';
 import DefaultProfile from '../images/profilepic.png';
-import '../styling/profile.scss';
 
 
 class NewPost extends Component {

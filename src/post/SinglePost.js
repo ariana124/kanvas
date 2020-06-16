@@ -6,7 +6,6 @@ import LikeFilled from '../images/like-filled.png';
 import LikeOutline from '../images/like-outline.png';
 import { isAuthenticated } from '../auth';
 import Comment from './Comment';
-import '../styling/profile.scss';
 
 
 class SinglePost extends Component {
