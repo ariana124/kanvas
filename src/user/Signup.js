@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { signup } from '../auth';
 import '../styling/profile.scss';
 
@@ -12,7 +13,8 @@ class Signup extends Component {
             email: "",
             password: "",
             error: "",
-            open: false
+            open: false,
+            redirectToSignin: false
         }
     }
 
@@ -39,11 +41,11 @@ class Signup extends Component {
                     name: "",
                     email: "",
                     password: "",
-                    open: true
+                    open: true,
+                    redirectToSignin: true
                 });
             }
         });
-
     };
 
     signupForm = (name, email, password) => (
@@ -60,22 +62,23 @@ class Signup extends Component {
                 <label className="text-muted">Password</label>
                 <input onChange={this.handleChange("password")} className="form-control" type="password" value={password}/>
             </div>
-            <button onClick={this.clickSubmit} className="postBtn">Submit</button>
+            <button onClick={this.clickSubmit} className="postBtn">Join Now</button>
         </form> 
     )
 
     render () {
-        const {name, email, password, error, open} = this.state;
+        const {name, email, password, error, open, redirectToSignin} = this.state;
+
+        if (redirectToSignin) {
+            return <Redirect to={`/signin`}/>
+        }
+
         return (
             <div className="container">
-                <h2 className="mt-5 mb-5">Sign Up</h2>
+                <h2 className="mt-5 mb-5">Create your account today!</h2>
 
                 {/* This div will display error messages if there are issues when the user is signing up. */}
                 <div className="alert alert-danger" style={{ display: error ? "" :" none" }}>{error}</div>
-
-                <div className="alert alert-info" style={{ display: open ? "" :" none" }}>
-                    New account is successfully created. Please sign in.
-                </div>
 
                 {this.signupForm(name, email, password)}
             </div>

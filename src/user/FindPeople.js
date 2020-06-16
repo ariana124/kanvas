@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { findPeople, follow } from './apiUser';
-import DefaultProfile from '../images/profilepic.jpg';
+import DefaultProfile from '../images/profilepic.png';
 import { Link } from 'react-router-dom';
 import { isAuthenticated } from '../auth';
 import '../styling/users.scss';
@@ -55,7 +55,7 @@ class FindPeople extends Component {
                     {/* If there's an error when displaying the user's profile image, it displays the default image instead. */}
                     <img 
                         className="img-thumbnail"
-                        style={{height: "300px", width: "300px"}}
+                        style={{height: "290px", width: "290px"}}
                         src={`${process.env.REACT_APP_API_URL}/user/photo/${user._id}`}
                         onError={i => (i.target.src = `${DefaultProfile}`)}
                         alt={user.name}

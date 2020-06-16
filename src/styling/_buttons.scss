@@ -38,9 +38,9 @@
 
 .deleteProfileBtn {
     border-radius: 5px;
-    border: 1px solid red;
+    border: 1px solid $primaryRed;
     background-color: #fff;
-    color: red;
+    color: $primaryRed;
     box-shadow: none;
     padding: 7px;
     text-transform: uppercase;
@@ -76,9 +76,9 @@
 
 .followBtn {
     border-radius: 5px;
-    border: 1px solid #01b807;
+    border: 1px solid $primaryGreen;
     background-color: #fff;
-    color: #01b807;
+    color: $primaryGreen;
     box-shadow: none;
     padding: 9px;
     text-transform: uppercase;
@@ -151,9 +151,9 @@
 
 .postBtn {
     border-radius: 5px;
-    border: 1px solid #01b807;
+    border: 1px solid $primaryGreen;
     background-color: #fff;
-    color: #01b807;
+    color: $primaryGreen;
     box-shadow: none;
     padding: 8px 10px;
     text-transform: uppercase;

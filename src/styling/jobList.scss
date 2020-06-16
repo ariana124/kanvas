@@ -1,9 +1,9 @@
 @import "./buttons";
 
 
-
-.job_info {
+.jobInfo {
     @extend .viewProfileBtn;
     height: 10px;
-    padding-bottom: 25px;
+    padding-bottom: 27px;
+    margin-left: 67px;
 }

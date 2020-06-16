@@ -56,7 +56,7 @@ class Signin extends Component {
                 <label className="text-muted">Password</label>
                 <input onChange={this.handleChange("password")} className="form-control" type="password" value={password}/>
             </div>
-            <button onClick={this.clickSubmit} className="createPostBtn">Submit</button>
+            <button onClick={this.clickSubmit} className="createPostBtn">Sign In</button>
         </form> 
     )
 
