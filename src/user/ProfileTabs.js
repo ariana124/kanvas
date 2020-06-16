@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import DefaultProfile from "../images/profilepic.jpg";
+import DefaultProfile from "../images/profilepic.png";
 import '../styling/followtabs.scss';
 
 

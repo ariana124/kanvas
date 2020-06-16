@@ -30,13 +30,13 @@ class Posts extends Component {
                 const posterName = post.postedBy ? post.postedBy.name : " Unknown"
                 
                 return (
-                    <div className="card col-md-4" key={i}>
+                    <div className="card col-md-4" style={{ opacity: '1'}} key={i}>
                     <div className="card-body">
                         <img
                             src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
                             alt={post.title} onError={i => i.target.src = `${DefaultPost}`}
                             className="img-thumbnail mb-3"
-                            style={{ height: "300px", width: "300px", border: 'none' }}
+                            style={{ height: "325px", width: "100%", border: 'none' }}
                         />
                         <h5 className="card-title">{post.title}</h5>
                         <p 

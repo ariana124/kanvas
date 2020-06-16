@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { comment, uncomment } from './apiPost';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
-import DefaultProfile from '../images/profilepic.jpg';
+import DefaultProfile from '../images/profilepic.png';
 import Trash from '../images/trash.png';
 import '../styling/profile.scss';
 
@@ -85,7 +85,7 @@ class Comment extends Component {
 
         return (
             <div>
-                <h2 className="mt-5 mb-5">Leave a comment</h2>
+                <h3 className="mt-5 mb-4">Leave a comment</h3>
 
                 <form onSubmit={this.addComment}>
                     <div className="form-group">
@@ -98,7 +98,7 @@ class Comment extends Component {
                         />
                     </div>
 
-                    <button className="postBtn mt-2">Post</button>
+                    <button className="postBtn mt-2 mb-3">Post</button>
                 </form>
 
                 <div className="alert alert-danger" style={{ display: error ? "" : "none" }}>
@@ -106,7 +106,7 @@ class Comment extends Component {
                 </div>
 
                 <div className="col-md-12">
-                    <h3 style={{ color: '#333'}}>{comments.length} Comments</h3>
+                    <h4 style={{ color: '#333'}}>{comments.length} Comments</h4>
                     <hr />
                     {comments.map((comment, i) => (
                         <div key={i}>
