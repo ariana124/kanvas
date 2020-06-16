@@ -107,7 +107,7 @@ class SinglePost extends Component {
                     src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
                     alt={post.title} onError={i => i.target.src = `${DefaultPost}`}
                     className="img-thumbnail mb-3"
-                    style={{ height: "325px", width: "auto", objectFit: 'cover' }}
+                    style={{ height: "325px", width: "100%", objectFit: 'cover' }}
                 />
 
                 {like ? (
