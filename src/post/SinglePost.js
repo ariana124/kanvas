@@ -159,7 +159,7 @@ class SinglePost extends Component {
 
         return (
             <div className="container">
-                <h2 className="display-2 mt-5 mb-5">{post.title}</h2>
+                <h2 className="display-3 mt-5 mb-5">{post.title}</h2>
 
                 {/* If loading is true then it displays loading..., else it returns the post */}
                 {!post ? <div className="jumbotron text-center">
