@@ -38,10 +38,23 @@ class Posts extends Component {
                             className="img-thumbnail mb-3"
                             style={{ height: "325px", width: "100%", border: 'none' }}
                         />
-                        <h5 className="card-title">{post.title}</h5>
+                        <h5 
+                            className="card-title"
+                            style={{ 
+                                textOverflow: 'ellipsis',
+                                overflow: 'hidden',
+                                whiteSpace: 'nowrap'
+                            }}
+                        >
+                            {post.title}
+                        </h5>
                         <p 
                             className="card-text"
-                            style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap'}}
+                            style={{ 
+                                textOverflow: 'ellipsis',
+                                overflow: 'hidden',
+                                whiteSpace: 'nowrap'
+                            }}
                         >
                             {post.body.substring(0, 100)}
                         </p>
