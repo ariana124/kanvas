@@ -1,1 +1,1 @@
-### WIP - This will be the front end for Kanvas.
+### WIP - README makeover to happen soon
