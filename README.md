@@ -4,29 +4,17 @@ A professional networking and job search site for both Software Engineer student
 
 ### Table of Contents
 
-[1.Inspiration](link)
-
-[2.Screenshots](link)
-
-[3.Web Architecture](link)
-
-[4.Libraries and Tools](link)
-
-[5.Setup](link)
-
-[6.Build](link)
-
-[7.Code Snippets](link)
-
-[8.Features](link)
-
-[9.Landing Page and Deployed App](link)
-
-[10.Timeline of Build and Resources](link)
-
-[11.Blog Posts about Kanvas](link)
-
-[12.Authors](link)
+- [Story and Inspiration](link)
+- [Screenshots](link)
+- [Web Architecture](link)
+- [Libraries and Tools](link)
+- [Setup and Build](link)
+- [Code Snippets](link)
+- [Features](link)
+- [Landing Page and Deployed App](link)
+- [Timeline of Build and Resources](link)
+- [Blog Posts about Kanvas](link)
+- [Authors](link)
 
 ### Inspiration 
 
@@ -36,9 +24,7 @@ A professional networking and job search site for both Software Engineer student
 
 ### Libraries and Tools
 
-### Setup
-
-### Build
+### Setup and Build
 
 ### Code Snippets
 
@@ -54,17 +40,17 @@ A professional networking and job search site for both Software Engineer student
 
 ### Blog Posts 
 
-To read more about Frontend development, read [Ariana's post](link)
+- To read more about Frontend development, read [Ariana's post](link)
 
-To read more about Backend development, read [Kevin's post](link)
+- To read more about Backend development, read [Kevin's post](link)
 
-To read more about Project Management and Deployment, read [Erika's post](link)
+- To read more about Project Management and Deployment, read [Erika's post](link)
 
 ### Authors
 
-UI/UX and Frontend Developer: [Ariana](https://github.com/ariana124)
+- UI/UX and Frontend Developer: [Ariana](https://github.com/ariana124)
 
-Fullstack Developer: [Kevin](https://github.com/kevapostol)
+- Fullstack Developer: [Kevin](https://github.com/kevapostol)
 
-Project Manager and Fullstack Developer: [Erika](https://github.com/ecaoili24)
+- Project Manager and Fullstack Developer: [Erika](https://github.com/ecaoili24)
 
