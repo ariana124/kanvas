@@ -4,7 +4,7 @@ A professional networking and job search site for both Software Engineer student
 
 ### Table of Contents
 
-- [Story and Inspiration](link)
+- [Story and Inspiration](#inspiration)
 - [Screenshots](link)
 - [Web Architecture](link)
 - [Libraries and Tools](link)
