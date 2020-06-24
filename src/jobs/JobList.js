@@ -1,3 +1,5 @@
+// A component for the Job List
+
 import React, { Component } from 'react'
 
 

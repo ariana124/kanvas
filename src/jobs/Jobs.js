@@ -1,3 +1,4 @@
+// A component for Jobs 
 import React, { Component } from 'react';
 import {getJobs} from './apiJobs';
 import JobList from './JobList';

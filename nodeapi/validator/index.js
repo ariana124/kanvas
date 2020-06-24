@@ -1,3 +1,5 @@
+// A module for validations
+
 exports.createPostValidator = (req, res, next) => {
   // Title
   req.check('title', 'Write a title').notEmpty()

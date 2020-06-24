@@ -1,3 +1,5 @@
+// A module to communicate to the API
+
 export const getJobs = (searchterm, place) => {
   if (searchterm === "") {
     searchterm = "javascript"

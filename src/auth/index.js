@@ -1,4 +1,3 @@
-// Will eventually remove this when we create a new repository to merge the frontend and backend.
 require('dotenv').config();
 
 export const signup = user => {

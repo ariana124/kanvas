@@ -1,3 +1,5 @@
+// A component to Edit Posts
+
 import React, { Component } from 'react'
 import {singlePost, update} from './apiPost'
 import {isAuthenticated} from '../auth'

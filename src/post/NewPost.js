@@ -1,3 +1,5 @@
+// A component to create a New Post
+
 import React, { Component } from 'react';
 import { isAuthenticated } from '../auth';
 import { create } from './apiPost';

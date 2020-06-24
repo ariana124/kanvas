@@ -1,3 +1,4 @@
+// A component for Posts 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { list } from './apiPost';

@@ -1,3 +1,5 @@
+// A component for a single post
+
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { singlePost, remove, like, unlike } from './apiPost'
