@@ -1,3 +1,4 @@
+// A module for authentications of the users, posts, and signup/signin 
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const expressJwt = require('express-jwt')
