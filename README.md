@@ -5,16 +5,16 @@ A professional networking and job search site for both Software Engineer student
 ### Table of Contents
 
 - [Story and Inspiration](#inspiration)
-- [Screenshots](link)
-- [Web Architecture](link)
-- [Libraries and Tools](link)
-- [Setup and Build](link)
-- [Code Snippets](link)
-- [Features](link)
-- [Landing Page and Deployed App](link)
-- [Timeline of Build and Resources](link)
-- [Blog Posts about Kanvas](link)
-- [Authors](link)
+- [Screenshots](#screenshots)
+- [Web Architecture](#web-architecture)
+- [Libraries and Tools](#libraries-and-tools)
+- [Setup and Build](#setup-and-build)
+- [Code Snippets](#code-snippets)
+- [Features](#features)
+- [Landing Page and Deployed App](#landing-page-and-deployed-application)
+- [Timeline of Build and Resources](#timeline-and-resources)
+- [Blog Posts about Kanvas](#blogposts)
+- [Authors](#authors)
 
 ### Inspiration 
 
