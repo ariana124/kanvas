@@ -1,3 +1,4 @@
+// A module to communicate with the GitHub Jobs API
 const axios = require('axios');
 
 exports.getJobs = (req, res) => {

@@ -1,3 +1,5 @@
+// A mongoose schema for Users
+
 const mongoose = require('mongoose')
 const { v1: uuidv1 } = require('uuid')
 const crypto = require('crypto')

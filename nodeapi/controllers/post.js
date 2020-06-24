@@ -1,8 +1,13 @@
+// A module for CRUD operations for Posts
+// CRUD is create, read, update, and delete
+// Communicates with the MongoDB
+
 const Post = require('../models/post')
 const formidable = require('formidable')
 const fs = require('fs')
 const _ = require('lodash')
 
+// Post request
 exports.postById = (req, res, next, id) => {
   Post.findById(id)
   .populate('postedBy', '_id name')
@@ -19,6 +24,7 @@ exports.postById = (req, res, next, id) => {
   })
 }
 
+// Post request 
 exports.getPosts = (req, res) => {
   const posts = Post.find()
   .populate('postedBy', '_id name')
@@ -32,6 +38,7 @@ exports.getPosts = (req, res) => {
   .catch(err => console.log(err))
 }
 
+// Post request
 exports.createPost = (req, res, next) => {
   let form = new formidable.IncomingForm()
   form.keepExtensions = true
@@ -62,6 +69,7 @@ exports.createPost = (req, res, next) => {
   })
 }
 
+// Post request 
 exports.postbyUser = (req, res) => {
   Post.find({ postedBy: req.profile._id })
       .populate('postedBy', '_id name')
@@ -77,7 +85,7 @@ exports.postbyUser = (req, res) => {
       })
 }
 
-
+// Post request
 exports.isPoster = (req, res, next) => {
   let isPoster = req.post && req.auth && req.post.postedBy._id == req.auth._id
   // console.log('isPoster:', isPoster)
@@ -89,20 +97,7 @@ exports.isPoster = (req, res, next) => {
   next()
 }
 
-// exports.updatePost = (req, res, next) => {
-//   let post = req.post
-//   post = _.extend(post, req.body)
-//   post.updated = Date.now()
-//   post.save((err, result) => {
-//     if (err) {
-//         return res.status(400).json({
-//             error: err
-//         });
-//     }
-//     res.json(post);
-//   });
-// }
-
+// Post request
 exports.updatePost = (req, res, next) => {
   let form = new formidable.IncomingForm()
   form.keepExtensions = true
@@ -133,7 +128,7 @@ exports.updatePost = (req, res, next) => {
   })
 }
 
-
+// Delete request
 exports.deletePost = (req, res) => {
   const post = req.post
   post.remove((err, post) => {
@@ -148,15 +143,18 @@ exports.deletePost = (req, res) => {
   })
 }
 
+// Update photo
 exports.photo = (req, res, next) => {
   res.set('Content-Type', req.post.photo.contentType)
   return res.send(req.post.photo.data)
 }
 
+// Get request
 exports.singlePost = (req, res) => {
   return res.json(req.post)
 }
 
+// Post request
 // Like and unlike
 exports.like = (req, res) => {
   // Finds the post and updates it with a like.
@@ -173,6 +171,7 @@ exports.like = (req, res) => {
   })
 }
 
+// Post request
 exports.unlike = (req, res) => {
   // Finds the post and removes the like with pull.
   Post.findByIdAndUpdate(
@@ -188,6 +187,7 @@ exports.unlike = (req, res) => {
   })
 }
 
+// Post request
 // Comment and uncomment
 exports.comment = (req, res) => {
   let comment = req.body.comment
@@ -209,6 +209,7 @@ exports.comment = (req, res) => {
   })
 }
 
+// Post request
 exports.uncomment = (req, res) => {
   let comment = req.body.comment
   // Finds the post by its id and updates it with the new comment.

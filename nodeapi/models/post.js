@@ -1,3 +1,5 @@
+// A mongoose schema for Posts
+
 const mongoose = require('mongoose')
 const {ObjectId} = mongoose.Schema
 

@@ -1,3 +1,7 @@
+// A module  A module for CRUD operations for Users
+// CRUD is create, read, update, and delete
+// Communicates with the MongoDB
+
 const _ = require('lodash')
 const User = require('../models/user')
 const formidable = require('formidable')
