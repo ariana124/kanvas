@@ -13,7 +13,7 @@ A professional networking and job search site for both Software Engineer student
 - [Features](#features)
 - [Landing Page and Deployed App](#landing-page-and-deployed-application)
 - [Timeline of Build and Resources](#timeline-and-resources)
-- [Blog Posts about Kanvas](#blogposts)
+- [Blog Posts about Kanvas](#blog-posts)
 - [Authors](#authors)
 
 ### Inspiration 
