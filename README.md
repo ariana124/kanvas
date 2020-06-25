@@ -48,7 +48,7 @@ To run it run the frontend for `development`, run the command:
 ```npm start```
 
 #### Backend Setup
-To download the modules needed for the app run the command:  
+To download the modules needed for the app, change the directory to `nodeapi` and run the command:  
 ```npm install```
 To run the backend (RESTful API) run the command:  
 ```npm run dev```
@@ -100,6 +100,10 @@ This is the file where we communicate with the GitHub Jobs API and receive job i
 
 
 ### Features
+<p align="center">
+  <img src="https://i.ibb.co/b6KjZ7T/Screen-Shot-2020-06-24-at-7-32-23-PM.png" style="width:700px">
+</p>
+
 
 ### Landing Page and Deployed Application 
 
