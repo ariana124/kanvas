@@ -109,7 +109,7 @@ This is the file where we communicate with the GitHub Jobs API and receive job i
 
 - [Landing Page](https://www.landing.kanvasdevs.com/) made through Wix
 
-- [Kanvas](https://www.kanvasdevs.com/) made by Ariana, Kevin, and Erika 
+- [Kanvas](https://www.kanvasdevs.com/) made by Ariana, Kevin, and Erika using the MERN Stack (MongoDB, Express, React, and Node)
 
 ### Timeline and Resources 
 <p align="center">
