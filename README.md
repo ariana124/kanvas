@@ -19,6 +19,15 @@ A professional networking and job search site for both Software Engineer student
 ### Inspiration 
 
 ### Screenshots
+#### Landing Page
+<p align="center">
+  <img src="https://i.ibb.co/x84Nrkh/screencapture-landing-kanvasdevs-2020-06-24-19-23-59.png" style="width:790px">
+</p>
+
+#### Homepage
+<p align="center">
+  <img src="https://i.ibb.co/LdmVpRm/screencapture-kanvasdevs-2020-06-24-18-51-37.png" style="width:790px">
+</p>
 
 ### Web Architecture 
 <p align="center">
@@ -31,21 +40,41 @@ A professional networking and job search site for both Software Engineer student
 </p>
 
 ### Setup and Build
-To test this build in your local machine you could go to the root folder of the repository and run  
+#### Frontend Setup
+To test this build in your local machine you could go to the root folder of the repository to download modules and run the command:  
+```npm install```  
+  
+To run it run the frontend for `development`, run the command:  
+```npm start```
+
+#### Backend Setup
+To download the modules needed for the app run the command:  
 ```npm install```
+To run the backend (RESTful API) run the command:  
+```npm run dev```
+#### Frontend Setup
+
 ### Code Snippets
 #### Frontend
+##### App.js
 <p align="center">
   <img src="https://i.ibb.co/CvQGNbk/image.png" style="width:600px">
 </p>
 
+This is the driver for the routes of the frontend.
+##### Sass file structure
 <p align="center">
   <img src="https://i.ibb.co/9ppFmVf/image.png" style="width:305px">
 </p>
 
+This is how the SASS file structure looks like and its being run by one file. It's the `app.scss`.
+
+##### app.scss
 <p align="center">
   <img src="https://i.ibb.co/G7vswv8/image.png" style="600px">
 </p>
+
+The main file for using `SASS`.
 
 #### Backend
 ##### api/app.js
@@ -53,16 +82,21 @@ To test this build in your local machine you could go to the root folder of the 
   <img src="https://i.ibb.co/QkHsfjM/image.png" style="width:640px">
 </p>
 
+This file is the main driver for handling requests/responses on the backend.
+
 ##### api/routes/jobs.js
 <p align="center">
   <img src="https://i.ibb.co/QdVXCPk/image.png" style="width:500px">
 </p>
+
+This is the file where it will communicate with the `controllers` directory according to the file that was imported.
 
 ##### api/controllers/jobs.js
 <p align="center">
   <img src="https://i.ibb.co/W6mc3ym/image.png" style="width:500px">
 </p>
 
+This is the file where we communicate with the GitHub Jobs API and receive job information.
 
 
 ### Features
