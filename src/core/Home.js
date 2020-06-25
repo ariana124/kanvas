@@ -10,7 +10,7 @@ const Home = () => (
             <p style={{ fontFamily: `sans serif` }}>
                 <i>
                     Picture your career like a painting, not a ladder. <br/>
-                    It's something that takes time and patience.
+                    Design a career that paints your story.
                 </i>
             </p>
         </div>
