@@ -24,13 +24,15 @@ A professional networking and job search site for both Software Engineer student
 <p align="center">
   <img src="https://i.ibb.co/BN2GDL3/image.png" style="width:770px">
 </p>
+
 ### Libraries and Tools
 <p align="center">
   <img src="https://i.ibb.co/cDq7Dfz/image.png" style="width:600px">
 </p>
 
 ### Setup and Build
-
+To test this build in your local machine you could go to the root folder of the repository and run  
+```npm install```
 ### Code Snippets
 #### Frontend
 <p align="center">
@@ -72,7 +74,10 @@ A professional networking and job search site for both Software Engineer student
 - [Kanvas](https://www.kanvasdevs.com/) made by Ariana, Kevin, and Erika 
 
 ### Timeline and Resources 
-![Timeline](https://i.ibb.co/jLNYNq3/Screen-Shot-2020-06-24-at-5-44-11-PM.png)
+<p align="center">
+  <img src="https://i.ibb.co/jLNYNq3/Screen-Shot-2020-06-24-at-5-44-11-PM.png" style="width:800px">
+</p>
+
 ### Blog Posts 
 
 - To read more about Frontend development, read [Ariana's post](link)
