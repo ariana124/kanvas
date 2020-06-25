@@ -1,6 +1,7 @@
 ## Kanvas 
 
-A professional networking and job search site for both Software Engineer students and entry level SWE
+A professional networking and job search site for both Software Engineer students and entry level developers.
+Users of Kanvas can create profiles and make connections to each other. It's an online social network designed for Software Engineers. Users can find available jobs in the area. Users can post/share tips on technical interviews. Users can create study groups. We want users to empower themselves and to build a strong community--not just a network. The important values that we want for our users to practice are: kindness, collaboration, and “giving back.”
 
 ### Table of Contents
 
@@ -17,6 +18,8 @@ A professional networking and job search site for both Software Engineer student
 - [Authors](#authors)
 
 ### Inspiration 
+
+We wanted to reframe the idea that creating and building a career is more than just climbing a ladder. Also, the methaphor only outlines one way of success. Each person has a story to share with the world. Conforming individuals to one path does not influence their best potential, it only restricts them. We wanted to reframe the idea of picturing your career as a work of art. We want our users to think of their career has a blank canvas. Each move, color, and mark are all made incrementally to create a beautiful masterpiece. With this in mind, a person can see and appreciate the big picture. You can step back and see that your career was not a stepping stones to the top--it's more than a title. Having a fulfilling career is a comprehensive view of all the things that makes us happy. It's purpose, passion, giving back, and making the world better than you left it. 
 
 ### Screenshots
 #### Landing Page
@@ -116,13 +119,16 @@ This is the file where we communicate with the GitHub Jobs API and receive job i
   <img src="https://i.ibb.co/jLNYNq3/Screen-Shot-2020-06-24-at-5-44-11-PM.png" style="width:800px">
 </p>
 
+- Ryan Dhungel, Udemy MERN stack course 
+
+- Icons by [Icons8](https://icons8.com/license)
 ### Blog Posts 
 
 - To read more about Frontend development, read [Ariana's post](link)
 
-- To read more about Backend development, read [Kevin's post](https://medium.com/@kevapostol/how-i-learned-the-mern-stack-in-24-days-b64f69e7dba6)
+- To read more about Backend development, read [Kevin's post](link)
 
-- To read more about Project Management and Deployment, read [Erika's post](link)
+- To read more about Project Management and Deployment, read [Erika's post](https://medium.com/@erikacaoili/building-my-first-full-stack-web-app-remotely-with-my-team-4d32d62fd856)
 
 ### Authors
 
