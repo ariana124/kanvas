@@ -21,12 +21,47 @@ A professional networking and job search site for both Software Engineer student
 ### Screenshots
 
 ### Web Architecture 
-
+<p align="center">
+  <img src="https://i.ibb.co/BN2GDL3/image.png" style="width:770px">
+</p>
 ### Libraries and Tools
+<p align="center">
+  <img src="https://i.ibb.co/cDq7Dfz/image.png" style="width:600px">
+</p>
 
 ### Setup and Build
 
 ### Code Snippets
+#### Frontend
+<p align="center">
+  <img src="https://i.ibb.co/CvQGNbk/image.png" style="width:600px">
+</p>
+
+<p align="center">
+  <img src="https://i.ibb.co/9ppFmVf/image.png" style="width:305px">
+</p>
+
+<p align="center">
+  <img src="https://i.ibb.co/G7vswv8/image.png" style="600px">
+</p>
+
+#### Backend
+##### api/app.js
+<p align="center">
+  <img src="https://i.ibb.co/QkHsfjM/image.png" style="width:640px">
+</p>
+
+##### api/routes/jobs.js
+<p align="center">
+  <img src="https://i.ibb.co/QdVXCPk/image.png" style="width:500px">
+</p>
+
+##### api/controllers/jobs.js
+<p align="center">
+  <img src="https://i.ibb.co/W6mc3ym/image.png" style="width:500px">
+</p>
+
+
 
 ### Features
 
@@ -37,7 +72,7 @@ A professional networking and job search site for both Software Engineer student
 - [Kanvas](https://www.kanvasdevs.com/) made by Ariana, Kevin, and Erika 
 
 ### Timeline and Resources 
-
+![Timeline](https://i.ibb.co/jLNYNq3/Screen-Shot-2020-06-24-at-5-44-11-PM.png)
 ### Blog Posts 
 
 - To read more about Frontend development, read [Ariana's post](link)
