@@ -122,9 +122,9 @@ This is the file where we communicate with the GitHub Jobs API and receive job i
 - Icons by [Icons8](https://icons8.com/license)
 ### Blog Posts 
 
-- To read more about Frontend development, read [Ariana's post](link)
+- To read more about Frontend development, read [Ariana's post](https://medium.com/@arianabibiano/kanvas-a-team-effort-4a8c27c9f5b3)
 
-- To read more about Backend development, read [Kevin's post](link)
+- To read more about Backend development, read [Kevin's post](https://medium.com/@kevapostol/how-i-learned-the-mern-stack-in-24-days-b64f69e7dba6)
 
 - To read more about Project Management and Deployment, read [Erika's post](https://medium.com/@erikacaoili/building-my-first-full-stack-web-app-remotely-with-my-team-4d32d62fd856)
 
