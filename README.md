@@ -120,7 +120,7 @@ This is the file where we communicate with the GitHub Jobs API and receive job i
 
 - To read more about Frontend development, read [Ariana's post](link)
 
-- To read more about Backend development, read [Kevin's post](link)
+- To read more about Backend development, read [Kevin's post](https://medium.com/@kevapostol/how-i-learned-the-mern-stack-in-24-days-b64f69e7dba6)
 
 - To read more about Project Management and Deployment, read [Erika's post](link)
 
