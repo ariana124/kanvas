@@ -55,8 +55,6 @@ To download the modules needed for the app, change the directory to `nodeapi` an
 ```npm install```
 To run the backend (RESTful API) run the command:  
 ```npm run dev```
-#### Frontend Setup
-
 ### Code Snippets
 #### Frontend
 ##### App.js
